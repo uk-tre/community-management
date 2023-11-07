@@ -1,0 +1,39 @@
+name: "\U0001F527 General Issue"
+description: Create an issue to be added to the UK TRE Community project board
+title: ""
+labels: 
+assignees: 
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for being involved in the UK TRE Community!
+
+        You should use this template to suggest a new action, fix, update, discussion point or similar for the UK TRE Community.
+
+        This issue will be added to the backlog of our project board. If you would like to take it on, please assign it to yourself!
+
+        All issues need to have someone assigned to/owning them in order to progress. Whilst this is not the case we'll keep the issue safe in the backlog!
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Please write a brief summary of the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Detail
+      description: Please explain your issue in detail
+    validations:
+      required: true
+  - type: textarea
+    id: tags
+    attributes:
+      label: Who can help
+      description: Tag anyone who you think will be interested or who can help by typing `@` followed by their GitHub username.
+    validations:
+      required: false
+  
