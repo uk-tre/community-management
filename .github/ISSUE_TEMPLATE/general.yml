@@ -1,8 +1,5 @@
 name: "\U0001F527 General Issue"
-description: Create an issue to be added to the UK TRE Community project board
-title: ""
-labels: 
-assignees: 
+description: Create an issue to be added to the UK TRE Community project board 
 body:
   - type: markdown
     attributes:
