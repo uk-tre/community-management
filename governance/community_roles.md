@@ -12,7 +12,7 @@ Madalyn Hardaker
 *Head of eResearch Data Governance, King’s College London*
 
 Simon Li
-*Software and Operations Engineer, University of Dundee*
+*Senior Research Infrastructure Engineer*
 
 David Sarmiento Perez
 *Research Project Manager, The Alan Turing Institute*
