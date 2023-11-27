@@ -8,7 +8,8 @@ This is sent to them, and organised, via email.
 ## Project workshops
 
 ### Summary
-*Please provide a short paragraph summarising your proposed session, including background and what you hope to cover. We'll share this on our website!*
+*Please provide a short paragraph summarising your proposed session, including background and what you hope to cover. 
+We'll share this on our website!*
 
 ### Required preparation
 *Please share anything people should read, know or prepare in advance for the session, or anything they should bring with them*
