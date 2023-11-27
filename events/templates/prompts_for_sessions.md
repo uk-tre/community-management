@@ -19,6 +19,9 @@ We'll share this on our website!*
 
 ## Breakout discussions
 
+Breakout discussions are open talks around a topic.
+They are open ended, and while we hope actions and collaboration arise from them, there is no specific output expected by the end of the session.
+
 ### Prompts
 *Please provide some prompts/questions/ideas you'd like to discuss in this session*
 - X
