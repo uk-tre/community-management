@@ -20,6 +20,10 @@ There are no specific channels, but these will be created as and if required by 
 
 While everyone is welcome to make an announcement here it is NOT the expected place for them.
 
+## Github: Org, repositories and project tracker
+
+< general overview and reference to future specific doc on how to use the repo, or just do it here?>
+
 ## NEW: proposed announcement list
 
 As we grow and the mailing list has more members it can be too much to keep up with all discussions, and discern between specific discussions and official announcements.
