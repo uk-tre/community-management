@@ -14,6 +14,8 @@ Please only reply to everyone if it is a message intended for everyone!
 
 We encourage community members unsure about the suitability of their communications to contact a member of the Community Management Working Group, one of its chairs or to write to our inbox at uktrecommunity@gmail.com
 
+If you find this list too difficult to keep up with, we are setting up an announcements only mailing list.
+
 ## Slack 
 We've moved! We are no longer maintaining the previous slack channel within the RSE workspace
 
@@ -27,7 +29,9 @@ While everyone is welcome to make an announcement here it is NOT the expected pl
 
 < general overview and reference to future specific doc on how to use the repo, or just do it here?>
 
-## NEW: proposed announcement list
+
+## Announcements mailing list
 
 As we grow and the mailing list has more members it can be too much to keep up with all discussions, and discern between specific discussions and official announcements.
-Therefore we are proposing the creation of a new announcement list, only list owners will be able to post messages and these will be restricted to official announcements (chiefly events).
+Therefore we are creating a new announcement list, only list owners will be able to post messages and these will be restricted to official announcements (chiefly events).
+The average frequency of this list will not be highger than once a week.
