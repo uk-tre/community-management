@@ -9,6 +9,9 @@ The list is a Public Discussion and everyone (even non subscribers) can send mes
 The use of the list should adhere to our [Code of Conduct](https://github.com/uk-tre/website/blob/main/CODE_OF_CONDUCT.md) as well as JISC [Service Policies](https://www.jiscmail.ac.uk/policyandsecurity/).
 The list is currently unmoderated, but we ask that everyone keeps their messages within topic.
 
+We also ask community members to be aware of when they are replying just to the email sender, or when they are replying to the whole mailing list, within a thread.
+Please only reply to everyone if it is a message intended for everyone!
+
 We encourage community members unsure about the suitability of their communications to contact a member of the Community Management Working Group, one of its chairs or to write to our inbox at uktrecommunity@gmail.com
 
 ## Slack 
