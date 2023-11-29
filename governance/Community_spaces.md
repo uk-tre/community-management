@@ -6,7 +6,7 @@ Our mailing list (UK-TRE-COMM@JISCMAIL.AC.UK) is the main and most important spa
 All official communications are made here, such as events.
 
 The list is a Public Discussion and everyone (even non subscribers) can send messages, all messages are public and available [here](https://www.jiscmail.ac.uk/cgi-bin/webadmin?A0=uk-tre-comm).
-The use of the list should adhere to our [Code of Conduct](https://github.com/uk-tre/website/blob/615735dfe9d428160be3de8848a7f71d43918d90/CODE_OF_CONDUCT.md) as well as JISC [Service Policies](https://www.jiscmail.ac.uk/policyandsecurity/).
+The use of the list should adhere to our [Code of Conduct](https://github.com/uk-tre/website/blob/main/CODE_OF_CONDUCT.md) as well as JISC [Service Policies](https://www.jiscmail.ac.uk/policyandsecurity/).
 The list is currently unmoderated, but we ask that everyone keeps their messages within topic.
 
 We encourage community members unsure about the suitability of their communications to contact a member of the Community Management Working Group, one of its chairs or to write to our inbox at uktrecommunity@gmail.com
