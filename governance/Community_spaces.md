@@ -48,6 +48,12 @@ A more detailed guide on how to use the repositories and project will be added h
 
 ## Announcements mailing list
 
-As we grow and the mailing list has more members it can be too much to keep up with all discussions, and discern between specific discussions and official announcements.
-Therefore we are creating a new announcement list, only list owners will be able to post messages and these will be restricted to official announcements (chiefly events).
-The average frequency of this list will not be highger than once a week.
+As the UK TRE community has grown (over 200 members on the existing mailing list!) the open nature of the list has led to some very valuable and insightful discussions.
+However some people are finding it difficult to keep track of important announcements amongst the other discussions.
+We've also found that some institutions are blocking the mailing list.
+
+We therefore plan to creating a new _announcements only_ list where only the UK TRE co-chairs have permission to send messages.
+These will be restricted to official announcements (chiefly events), and a summary of updates submitted by the community for inclusion.
+We may also highlight particularly interesting discussions from the main list, and a more general roundup of relevant TRE news.
+The average frequency of this list will not be higher than once a week.
+We hope this provides a way for everyone to stay in touch regardless of how much time they're able to devote to the community.
