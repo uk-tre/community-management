@@ -42,7 +42,7 @@ Everyone is welcome to add issues to the corresponding repo with ideas and propo
 The main views to be aware of are:
 - Overview: by far the most used one, it contains all issues by status.
 - By Deliverable: the fastest way to view all issues grouped by the expected outputs of the current funding call
-
+As with Slack channels, more useful views (for instance, viewing tasks by Working Group) will be added as required by the community.
 A more detailed guide on how to use the repositories and project will be added here: TBD
 
 ## Announcements mailing list
