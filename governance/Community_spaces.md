@@ -21,7 +21,7 @@ We've moved! We are no longer maintaining the previous slack channel within the 
 
 [UK TRE Community](https://uktrecommunity.slack.com) is our NEW slack workspace, and is intended as a place to work towards the outputs of specific working groups.
 Currently is where the Community Management Working Group coordinates, it is also used by chairs to discuss privately (on the rare ocassions that is needed, like sharing personal details).
-There are no specific channels, but these will be created as and if required by emerging interest or working groups.
+For now there are the default `#general` and `#random` channels. New channels will be created as and if required by emerging interest or working groups.
 
 While everyone is welcome to make an announcement here it is NOT the expected place for them.
 
