@@ -34,7 +34,7 @@ It is organised into different repositories, mainly:
 - community-management: used by the CMWG for everything from governance to events planning and meeting notes
 - Working/Interest groups repositories: will be created as and if necessary, currently only 'packages' exists
 
-All work across repositories is tracked and openly discussed in the [TRE Community - Project board](https://github.com/orgs/uk-tre/projects/1), it allows to track the work done, in progress and proposals for future tasks.
+All work across repositories is tracked and openly discussed in the [TRE Community - Project board](https://github.com/orgs/uk-tre/projects/1). The board allows the community to track the work done, work in progress and proposals for future tasks.
 Working openly allows anyone to comment and contribute, you are welcome and encouraged to do so.
 
 Everyone is welcome to add issues to the corresponding repo with ideas and proposals, these will be added to the 'Ideas' column in 'Overview' and discussed when appropiatte for approval.
