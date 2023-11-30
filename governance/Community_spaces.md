@@ -12,7 +12,7 @@ The list is currently unmoderated, but we ask that everyone keeps their messages
 We also ask community members to be aware of when they are replying just to the email sender, or when they are replying to the whole mailing list, within a thread.
 Please only reply to everyone if it is a message intended for everyone!
 
-We encourage community members unsure about the suitability of their communications to contact a member of the Community Management Working Group, one of its chairs or to write to our inbox at uktrecommunity@gmail.com
+We encourage community members unsure about the suitability of their communications to contact a member of the Community Management Working Group (CMWG), one of its chairs or to write to our inbox at uktrecommunity@gmail.com
 
 If you find this list too difficult to keep up with, we are setting up an announcements only mailing list.
 
