@@ -21,7 +21,7 @@ We've moved! We are no longer maintaining the previous slack channel within the 
 
 [UK TRE Community](https://uktrecommunity.slack.com) is our NEW slack workspace, and is intended as a place to work towards the outputs of specific working groups.
 For now there are the default `#general` and `#random` channels. New channels will be created as and if required by emerging interest or working groups.
-
+There is also a channel used by chairs to discuss privately (on the rare occasions that is needed, like sharing personal details).
 While everyone is welcome to make an announcement here it is NOT the expected place for them.
 
 ## Github: Org, repositories and project tracker
