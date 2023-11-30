@@ -1,6 +1,6 @@
 # UK TRE Community working and communication spaces
 
-## Jiscmail: Open discussions and annoucements
+## Jiscmail: Open discussions and announcements
 
 Our mailing list (UK-TRE-COMM@JISCMAIL.AC.UK) is the main and most important space to watch out for announcements.
 All official communications are made here, such as events.
