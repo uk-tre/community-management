@@ -26,7 +26,6 @@ While everyone is welcome to make an announcement here it is NOT the expected pl
 
 ## Github: Org, repositories and project tracker
 
-< general overview and reference to future specific doc on how to use the repo, or just do it here?>
 [uk-tre](https://github.com/uk-tre) is the GitHub organisation in which all the Community's content lives, and where work is organised and tracked for the CMWG and all working groups that want to do so.
 
 It is organised into different repositories, mainly:
