@@ -24,6 +24,8 @@ For now there are the default `#general` and `#random` channels. New channels wi
 There is also a channel used by chairs to discuss privately (on the rare occasions that is needed, like sharing personal details).
 While everyone is welcome to make an announcement here it is NOT the expected place for them.
 
+If you want to join 👉 [follow the link](https://join.slack.com/t/uktrecommunity/shared_invite/zt-26r7jz25d-J5iV0XoqyLepEiKk4XpJVg)
+
 ## Github: Org, repositories and project tracker
 
 [uk-tre](https://github.com/uk-tre) is the GitHub organisation in which all the Community's content lives, and where work is organised and tracked for the CMWG and all working groups that want to do so.
