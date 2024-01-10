@@ -63,16 +63,8 @@ No future versions beyond the tagged version are guaranteed to be endorsed by th
 1. The Working group completes the [Working Groups closure form]() confirming its termination.
 2. The [Steering Group]() reviews this form, and when approved, lists this working group under `Historical Working Groups`.
 
-
 ### Recommendations
-- Engage the community throughout with draft material, to move towards consensus at the endorsement stage
-
-## Participants
-- Clearly defined chair/co-chair
-  - More than one?
-
-## Commitments
-- Making all their outputs open source
-- To allow anyone interested to join the group
-- To provide updates at community meetings on progress
-- Understanding that the outputs won't necessarily be formally endorsed by the UK TRE Community
+In order to maximise the chance of community endorsement for Working Group outputs, we recommend all working groups:
+- Share regular updates with the wider community, to ensure co-creation and allow amendments to happen live, rather than at the end
+- To carefully consider the scope, and target outputs, based on community feedback. If specific suggested outputs face pushback, are there higher level outputs that are more reflective of what the community needs?
+- To carry out informal reviews of outputs with the community regularly, before requesting formal review.
