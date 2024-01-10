@@ -16,7 +16,6 @@ Therefore it is important to note that establishing a WG with the UK TRE communi
 
 
 ## Process
-
 ### Establishing a Working group
 
 1. Member(s) suggesting a working group fill in the [Working Group Charter](working-group-charter.md).
@@ -24,7 +23,7 @@ Therefore it is important to note that establishing a WG with the UK TRE communi
     - Aligns with [community principles]()
     - Represents new work being undertaken in the community
 3. If the Charter is rejected by the [Steering Group](), feedback is provided to the submitting member(s) on why, and the Working Group returns to step 1.
-4. If the Charter is approved by the [Steering Group](), the Charter is made available for community review on the [UK TRE GitHub](https://github.com/uk-tre/community-management) for a period of 2 weeks.
+4. If the Charter is approved by the [Steering Group](), the Charter is made available for community review via an Issue on the [UK TRE GitHub](https://github.com/uk-tre/community-management) for a period of 2 weeks.
 5. If, after a period of 2 weeks, there are no unresolved objections to the Charter, the working group is established :tada: 
 6. If there are unresolved objections, these are reviewed by the [Steering Group](). Any outstanding objections requiring review after this are collated and shared with the Working Group proposers for updating the charter, and the Working Group returns to step 4.
 7. Once a Working Group is established, they are formally recognised on the [UK TRE Community website](https://www.uktre.org/), and the community is notified of its creation.
@@ -32,10 +31,41 @@ Therefore it is important to note that establishing a WG with the UK TRE communi
 ### Endorsing Working Group outputs
 
 1. When a WG has outputs ready to share with the community, they notify the [Steering Group]()
-x. CMWG either rejects outputs (with reason provided), accepts them for distribution, or accepts them and formally endorses them
-x. Working group chairs confirm dissolution of the working group (using a template)
-    - See the [RDA options for closing out a WG](https://www.rd-alliance.org/groups/creating-and-managing-rda-groups/creating-or-joining-rda-working-group.html#:~:text=Closing%20out%20a%20Working%20Group)
+2. The draft outputs are reviewed by the [Steering Group]() to ensure it:
+    - Aligns with [community principles]()
+3. If approved by the [Steering Group](), the draft outputs are made available for community review via an Issue on the [UK TRE GitHub](https://github.com/uk-tre/community-management) for a period of 4 weeks.
+4. At the end of this 4 week period, 3 outcomes are possible:
 
+#### Rejection
+The community rejects the draft outputs of the WG.
+
+The [Steering Group]() will collate the reasons for rejection and share these with the WG.
+The WG can decide to either close out the working group, or amend the outputs to resolve any reasons for rejection.
+
+#### Approved for distribution
+The community approves the outputs for distribution. 
+
+The UK TRE community will signpost to the outputs, but will not specifically endorse them.
+The WG can decide to either close out the working group, or amend the outputs to work towards endorsement.
+
+#### Approved and endorsed
+The community approves the outputs for distribution, and explicitly endorses them.
+
+The UK TRE community will signpost to the outputs, and formally endorse them publicly.
+
+The WG outputs will be tagged with a version referencing this endorsement.
+If the WG wants to amend/update these outputs, they will have to go through the endorsement process above again. 
+No future versions beyond the tagged version are guaranteed to be endorsed by the community.
+
+
+### Closing a Working Group
+
+1. The Working group completes the [Working Groups closure form]() confirming its termination.
+2. The [Steering Group]() reviews this form, and when approved, lists this working group under `Historical Working Groups`.
+
+
+### Recommendations
+- Engage the community throughout with draft material, to move towards consensus at the endorsement stage
 
 ## Participants
 - Clearly defined chair/co-chair
