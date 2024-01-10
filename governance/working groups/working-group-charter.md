@@ -4,7 +4,7 @@
 
 This section should summarise in one or two paragraphs the Working group proposal, for any community member to read and quickly grasp the essence of the WG.
 
-## Background
+## Background
 
 This section should dive into more detail on what the WG aims to address, why it is undertaking this work, and reference any background material/pre-existing work that this proposal builds on.
 
@@ -36,6 +36,3 @@ By submitting this charter, this working group agrees to:
 - [ ] Share any outputs openly under a [CC BY 4.0 licence](https://creativecommons.org/licenses/by/4.0/)
 - [ ] Allow participation from any interested parties
 - [ ] Report on progress at each quarterly community meeting for the duration of the Working Group
-
-- Stakeholders to engage
-- Roles within working group (participating member, informed member etc.)

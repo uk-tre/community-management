@@ -58,7 +58,7 @@ If the WG wants to amend/update these outputs, they will have to go through the 
 No future versions beyond the tagged version are guaranteed to be endorsed by the community.
 
 
-### Closing a Working Group
+### Closing a Working Group
 
 1. The Working group completes the [Working Groups closure form]() confirming its termination.
 2. The [Steering Group]() reviews this form, and when approved, lists this working group under `Historical Working Groups`.
