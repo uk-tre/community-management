@@ -1,0 +1,75 @@
+name: "\U000270D Governance document"
+description: Use this issue if you want to create, amend of remove a community governance document.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for being involved in the UK TRE Community!
+
+        You should use this template to suggest the creation, amendment or removal of a community governance document.
+
+        This issue will be added to the backlog of our project board, and follow our process for changing/amending governance documents. 
+        If you would like to take it on, please assign it to yourself!
+
+        All issues need to have someone assigned to/owning them in order to progress. Whilst this is not the case we'll keep the issue safe in the backlog!
+  - type: input
+    id: name 
+    attributes:
+      label: Document name
+      description: Please add the name of the document you want to create, amend or remove
+    validations:
+      required: true
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of change
+      description: Do you want to create, amend of remove a document?
+      options:
+        - Create a new document
+        - Amend a pre-existing document
+        - Review a document
+      default: 0
+    validations:
+      required: true
+  - type: dropdown
+    id: change_size
+    attributes:
+      label: Size of change
+      description: How big is the change you want to make? Is it editorial (no change to underlying content and/or meaning) or substantive (change to underlying content and/or meaning)
+      options:
+        - Editorial
+        - Substantive
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Detail
+      description: Please explain your suggestion in detail
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: Please provide an open link to a document on which other community members can comment
+    validations:
+      required: true
+  - type: textarea
+    id: tags
+    attributes:
+      label: Who can help
+      description: Tag anyone who you think will be interested or who can help by typing `@` followed by their GitHub username.
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Agreement
+      description: Before submitting this issue, plase confirm the following
+      options:
+        - label: I have assigned this issue the `governance` label
+          required: true
+        - label: I have added the issue to the TRE Community project board
+          required: true
