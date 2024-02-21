@@ -17,6 +17,8 @@ This section should include details on how, where and when the WG intends to mee
 ## Communication mechanisms
 This section should outline how the WG intends to communicate progress with its members, the UK TRE Community more widely, and any other interested stakeholders.
 
+This could include individual people, organisations, community groups and more who may be interested in or impacted by the work of the WG.
+
 ## Working Group roles
 This section should outline the different roles within the Working Group. Examples include:
 - **Chairs**: Leaders of the WG
