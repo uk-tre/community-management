@@ -1,0 +1,61 @@
+name: "\U0002755 Objection"
+description: Use this issue if you want to object to a decision made within the community.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for being involved in the UK TRE Community!
+
+        You should use this template to object to a decision made within the community.
+        You should only use this to raise objections to decisions for which there is not currently ongoing open community review.
+        For any open discussion, please find the relative issue and raise any objections there!
+
+        This issue will be added to the backlog of our project board, and reviewed by the Community Management Working Group. 
+        Once validated, it will be open for community discussion for up to 28 days.
+
+        All issues need to have someone assigned to/owning them in order to progress. Whilst this is not the case we'll keep the issue safe in the backlog!
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision objected
+      description: Please share the decision you are objecting to.
+    validations:
+      required: true
+  - type: textarea
+    id: links
+    attributes:
+      label: Relevant links
+      description: Please provide any links to relevant issues, PRs or documents to provide context.
+    validations:
+      required: false
+  - type: textarea
+    id: detail
+    attributes:
+      label: Detail
+      description: Please explain your objection in detail
+    validations:
+      required: true
+    - type: textarea
+    id: actions
+    attributes:
+      label: Actions
+      description: Please list out any actions you wish to
+    validations:
+      required: true
+  - type: textarea
+    id: tags
+    attributes:
+      label: Who can help
+      description: Tag anyone who you think will be interested or who can help by typing `@` followed by their GitHub username.
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Agreement
+      description: Before submitting this issue, plase confirm the following
+      options:
+        - label: I have assigned this issue the `governance` label
+          required: true
+        - label: I have added the issue to the TRE Community project board under the `Ideas` section
+          required: true
