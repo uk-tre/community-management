@@ -84,7 +84,8 @@ No future versions beyond the tagged version are guaranteed to be endorsed by th
 
 ### Recommendations
 
-In order to maximise the chance of community endorsement for Working Group outputs, we recommend all working groups:
+Outputs that have transparently engaged the community and reflect community consensus on the issue at hand are the most likely to be endorsed. In order to maximise the chance of community endorsement for Working Group outputs, we recommend all working groups:
+
 - Share regular updates with the wider community, to ensure co-creation and allow amendments to happen live, rather than at the end
 - To carefully consider the scope, and target outputs, based on community feedback. If specific suggested outputs face pushback, are there higher level outputs that are more reflective of what the community needs?
-- To carry out informal reviews of outputs with the community regularly, before requesting formal review.
+- To carry out informal reviews of outputs with the community regularly, before requesting formal review. Special attention should be given to those with objecting views on the Working Group's proposed outputs and work
