@@ -46,7 +46,7 @@ Therefore it is important to note that establishing a WG with the UK TRE communi
 2. The draft outputs are reviewed by the [Community Management Working Group]() to ensure it:
     - Aligns with [community principles]()
 3. If approved by the [Community Management Working Group](), the draft outputs are made available for community review, and shared with the community, via an Issue on the [UK TRE GitHub](https://github.com/uk-tre/community-management) for a period of at least 28 days.
-4. At the end of this period, the outputs will be considered by the [Steering Group]() with 3 possible outcomes:
+4. At the end of this period, based on community input the outputs will be considered by the [Steering Group]() with 3 possible outcomes:
 
 #### Rejection
 
