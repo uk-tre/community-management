@@ -35,6 +35,12 @@ This section should detail how interested parties can get involved with joining 
 
 It should also detail expected weekly time commitment for defined roles above
 
+## Resource requirements
+
+This section should include perceived resource requirements to carry out this work.
+
+Where possible, the Community Management Working Group will support with resources - but these are as of writing very limited!
+
 ## Agreement
 
 By submitting this charter, this working group agrees to:

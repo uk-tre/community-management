@@ -1,9 +1,20 @@
 # Working groups
 
+## Overview
+
 For the UK TRE Community, a Working Group (WG) is a space for members to come together to work and discuss on a topic.
 
 WGs can be set up by any member of the community, and are focused on producing specific, tangible outputs within a given time period.
 They are modelled off the pre-existing concept of Working Groups found in communities like [DARE UK](https://dareuk.org.uk/dare-uk-launches-dynamic-collaborative-communities-invites-proposals-for-new-groups/), the [Research Data Alliance (RDA)](https://www.rd-alliance.org/groups/creating-and-managing-rda-groups/creating-or-joining-rda-working-group.html), the [W3C](https://www.w3.org/2017/Process-20170301/#GAGeneral), the [IETF](https://www.ietf.org/how/wgs/) and more.
+
+UK TRE Community Working Groups become part of the wider UK TRE Community ecosystem, and benefit from:
+- Having access to and engaging a community of TRE experts from across industriues keen to work collaboratively
+- Dedicated space on the [UK TRE Community website]() to share updates and outputs
+- Promotion through our communication channels, including Slack, mailing list, website and newsletter
+- Dedicated presentation opportunities and breakout rooms at our quarterly meetings
+- Additional support from the [Community Management Working Group]() where possible
+
+## Process
 
 There are two distinct processes for those creating a WG to consider:
 
@@ -17,8 +28,6 @@ As the UK TRE community's primary focus is to act as a signposting and convening
 
 Therefore it is important to note that establishing a WG with the UK TRE community **does not** imply any outputs of the WG are endorsed by the UK TRE Community.
 
-
-## Process
 ### Establishing a Working group
 
 1. Member(s) suggesting a working group fill in the [Working Group Charter](working-group-charter.md).
@@ -59,8 +68,12 @@ The [Steering Group]() approves the outputs for distribution, and explicitly end
 
 The UK TRE community will signpost to the outputs, and formally endorse them publicly.
 
+The decision to endorse a Working Group output will be more rigorous, and therefore likely take longer, than the decision to approve outputs for distribution.
+If Working Groups are happy for their outputs to simply be approved and not endorsed by the community, they should make this clear to the [Steering Group](). 
+
 The WG outputs will be tagged with a version referencing this endorsement.
 If the WG wants to amend/update these outputs, they will have to go through the endorsement process above again. 
+
 No future versions beyond the tagged version are guaranteed to be endorsed by the community.
 
 
