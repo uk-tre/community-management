@@ -90,10 +90,11 @@ Below is a walkthrough of all the steps required to contribute via GitHub, from 
 This walkthrough is designed to give you the critical path steps to contributing directly to any UK TRE community repository. 
 For a broader, deeper introduction to GitHub, check out the [Turing Way’s Introduction to GitHub Workshop](https://www.youtube.com/watch?v=Vcckl-2dASM), run at [CarpentryCon2022](https://2022.carpentrycon.org/).
 
-#### 1. Go to the [GitHub homepage](https://github.com/)
-In the top right corner, click either ‘Sign In’ (if you have an account already) or ‘Sign Up’. You will need an email, password, username and one or two other things.
+1. Go to the [GitHub homepage](https://github.com/)
+3. In the top right corner, click either ‘Sign In’ (if you have an account already) or ‘Sign Up’. You will need an email, password, username and one or two other things.
 
-GitHub homepage
+![GitHub homepage](../images/github_signin.png "GitHub homepage" )
+
 3. Once you are logged in, navigate to our Project board
 4. This project board is a Kanban board for all ongoing tasks within the community. Each task is represented as an ‘Issue’ card on the board. The board is split by:
 Ideas: Tasks that are proposals for work we could do, but have not yet been agreed by the Working Group
