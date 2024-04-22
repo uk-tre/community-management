@@ -3,7 +3,7 @@
 ## Intro
 Welcome to UK TRE Community Management Working Group repository! :tada:
 
-:sun: We're excited that you're here and want to contribute. :sun:
+☀️ We're excited that you're here and want to contribute. ☀️
 
 We want to ensure that every user and contributor feels welcome, included and supported to participate in the UK TRE community. 
 We hope that the information provided in this file will make it as easy as possible for you to get involved.
@@ -51,34 +51,46 @@ We share joining instructions for the meeting each week on the #community-manage
 Alternatively, if you’d like to get a regular recurring invite you can email David (dsarmientoperez@turing.ac.uk).
 
 ## 📧 Get in touch
+
 There are many ways to get in touch with the Community Management team!
-GitHub issues
+
+### GitHub issues
+
 Join a discussion, collaborate on an ongoing task and exchange your thoughts with others.
+
 Can't find your idea being discussed anywhere? Open a new issue! (See the contributing through GitHub guidance below).
-Slack Channel
-We have a #community-management channel on the UK TRE Community Slack workspace.
+
+### Slack Channel
+
+We have a #community-management channel on the [UK TRE Community Slack workspace](https://join.slack.com/t/uktrecommunity/shared_invite/zt-26r7jz25d-J5iV0XoqyLepEiKk4XpJVg).
 The Community Management Working Group will also provide notifications on upcoming events and share useful resources on Slack.
-Individual members
+
+### Individual members
+
 You can also tag any of the leads of the Community Management Working group on GitHub using their usernames below.
-@ manics
-@ davsarper
-@ harisood
-@ hardakerm
+- @ manics
+- @ davsarper
+- @ harisood
+- @ hardakerm
 
-Or you can email Hari (hsood@turing.ac.uk) or David (dsarmientoperez@turing.ac.uk). 
+Or you can email David (dsarmientoperez@turing.ac.uk). 
 
-😎 Contributing to our working group
-We manage all our tasks via our Project board (insert link).
+## 😎 Contributing to our working group
+
+We manage all our tasks via our [Project board](https://github.com/orgs/uk-tre/projects/1).
 
 There are two main ways to add tasks to the project board:
-Directly via GitHub (recommended)
-Indirectly via a Google Form. The Community Management Working Group will then add your submission to the Project Board as an issue.
+- Directly via GitHub (recommended)
+- Indirectly via a Google Form. The Community Management Working Group will then add your submission to the Project Board as an issue.
 
-Contributing directly through GitHub
+### Contributing directly through GitHub
 
 Below is a walkthrough of all the steps required to contribute via GitHub, from the very beginning.
-This walkthrough is designed to give you the critical path steps to contributing directly to the Specification repository. For a broader, deeper introduction to GitHub, check out the Turing Way’s Introduction to GitHub Workshop, run at CarpentryCon2022.
-Go to the GitHub homepage
+
+This walkthrough is designed to give you the critical path steps to contributing directly to any UK TRE community repository. 
+For a broader, deeper introduction to GitHub, check out the [Turing Way’s Introduction to GitHub Workshop](https://www.youtube.com/watch?v=Vcckl-2dASM), run at [CarpentryCon2022](https://2022.carpentrycon.org/).
+
+#### 1. Go to the [GitHub homepage](https://github.com/)
 In the top right corner, click either ‘Sign In’ (if you have an account already) or ‘Sign Up’. You will need an email, password, username and one or two other things.
 
 GitHub homepage
