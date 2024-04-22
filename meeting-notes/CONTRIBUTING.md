@@ -3,25 +3,29 @@
 ## Intro
 Welcome to UK TRE Community Management Working Group repository! :tada:
 
-☀️ We're excited that you're here and want to contribute. ☀️
+:sun: We're excited that you're here and want to contribute. :sun:
 
 We want to ensure that every user and contributor feels welcome, included and supported to participate in the UK TRE community. 
-We hope that the information provided in this document will make it as easy as possible for you to get involved.
+We hope that the information provided in this file will make it as easy as possible for you to get involved.
 
-There are two main ways to contribute to this repo - via GitHub issues, and via Google Forms. Contributions primarily take the form of creating issues, adding comments and taking part in discussions.
-Specific updates to content and the website are managed by the Community Management working group (insert link). 
+There are two main ways to contribute to this repo - via GitHub issues, and via Google Forms. 
+Contributions primarily take the form of creating issues, adding comments and taking part in discussions.
+Specific updates to content and the website are managed by the [Community Management Working Group](https://uktre.org/groups/current/community_management/). 
 
-Please follow these guidelines to make sure your contributions can be easily integrated into the repo. As you start contributing to the UK TRE community, don't forget that your ideas are more important than perfectly curated issues and forms ❤️
+Please follow these guidelines to make sure your contributions can be easily integrated into the repo. 
+As you start contributing to the UK TRE community, don't forget that your ideas are more important than perfectly curated issues and forms :heart:
 
 If you have any questions that aren't discussed below, please let us know through one of the many ways to get in touch.
 
-✨ How to contribute
-⭐️ You are acknowledged for all kinds of contributions
+## :sparkles: How to contribute
 
-Whatever is your availability, there is a way to contribute to this Working Group.
+:star: You are acknowledged for all kinds of contributions
 
-👋 I'm busy, I only have 5 minutes
-We use GitHub issues on this project board to track our work.
+Whatever is your availability, there is a way to contribute.
+
+### :wave: I'm busy, I only have 5 minutes
+
+We use GitHub issues on [this project board](https://github.com/orgs/uk-tre/projects/1) to track our work.
 
 Look through the board to troubleshoot an issue or participate in an ongoing discussion by commenting.
 
@@ -29,23 +33,24 @@ You can also share this repository with someone who might be interested to get i
 
 For more details on how to get started contributing to the project board, see ‘Contributing to our project board’ below.
 
-⏳ I've got 15 minutes - tell me what I should do
+### :timer: I've got 15 minutes - tell me what I should do
 
-You can read our [README](./README.md) file to find  more details on the group, as well as details of our aims on the Community Management Working Group page (insert link)
+You can read our [README](./README.md) file to find  more details on the group, as well as details of our aims on the [Community Management Working Group page](https://uktre.org/groups/current/community_management/).
 
 You can also read different issues in this repository and comment where you would like to be involved.
 
-🎉 I want to dive deeper and become part of the Working Group
+### :tada: I want to dive deeper and become part of the Working Group
 
 Amazing! We’d love to have you involved.
 
 The best way to be more directly involved in the Working Group is to attend our weekly meetings, Tuesdays 11:00 - 12:00.
 These meetings are sprints in which we prioritise and allocate tasks within the group.
 
-We share joining instructions for the meeting each week on the #community-management channel on our Slack workspace.
+We share joining instructions for the meeting each week on the #community-management channel on our [Slack workspace](https://join.slack.com/t/uktrecommunity/shared_invite/zt-26r7jz25d-J5iV0XoqyLepEiKk4XpJVg).
 
-Alternatively, if you’d like to get a regular recurring invite you can email Hari (hsood@turing.ac.uk).
-📧 Get in touch
+Alternatively, if you’d like to get a regular recurring invite you can email David (dsarmientoperez@turing.ac.uk).
+
+## 📧 Get in touch
 There are many ways to get in touch with the Community Management team!
 GitHub issues
 Join a discussion, collaborate on an ongoing task and exchange your thoughts with others.
