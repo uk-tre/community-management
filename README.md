@@ -8,6 +8,13 @@ This repo is for community management, including event planning, meeting notes, 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/cassgvp"><img src="https://avatars.githubusercontent.com/u/43407869?v=4?s=100" width="100px;" alt="Cassandra Gould van Praag"/><br /><sub><b>Cassandra Gould van Praag</b></sub></a><br /><a href="#projectManagement-cassgvp" title="Project Management">📆</a> <a href="#doc-cassgvp" title="Documentation">📖</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
