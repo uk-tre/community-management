@@ -18,6 +18,110 @@
         "doc",
         "ideas"
       ]
+    },
+    {
+      "login": "manics",
+      "name": "Simon Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1644105?v=4",
+      "profile": "https://github.com/manics",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "Davsarper",
+      "name": "Davsarper",
+      "avatar_url": "https://avatars.githubusercontent.com/u/118986872?v=4",
+      "profile": "https://github.com/Davsarper",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "harisood",
+      "name": "Hari Sood",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67151373?v=4",
+      "profile": "https://github.com/harisood",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "balintstewart77",
+      "name": "Balint Stewart",
+      "avatar_url": "https://avatars.githubusercontent.com/u/123556418?v=4",
+      "profile": "https://github.com/balintstewart77",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "hardakerm",
+      "name": "Madalyn Hardaker",
+      "avatar_url": "https://avatars.githubusercontent.com/u/150800302?v=4",
+      "profile": "https://github.com/hardakerm",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "jemrobinson",
+      "name": "James Robinson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3502751?v=4",
+      "profile": "https://github.com/jemrobinson",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "JimMadge",
+      "name": "Jim Madge",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23616154?v=4",
+      "profile": "https://blog.jmadge.com",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "rmbaxter67",
+      "name": "Rob Baxter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/125452191?v=4",
+      "profile": "https://github.com/rmbaxter67",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "kbarrass1252",
+      "name": "Kimberley Barrass",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52785892?v=4",
+      "profile": "https://github.com/kbarrass1252",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "AmyzingT",
+      "name": "AmyT",
+      "avatar_url": "https://avatars.githubusercontent.com/u/220020153?v=4",
+      "profile": "https://github.com/AmyzingT",
+      "contributions": [
+        "doc"
+      ]
     }
   ]
 }
