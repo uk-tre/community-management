@@ -17,6 +17,17 @@
         "projectManagement",
         "doc"
       ]
+    },
+    {
+      "login": "manics",
+      "name": "Simon Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1644105?v=4",
+      "profile": "https://github.com/manics",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
     }
   ]
 }
