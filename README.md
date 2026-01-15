@@ -4,7 +4,7 @@
 This repo is for community management, including event planning, meeting notes, governance, discussions. Use this repo for everything that is not direct content for the website
 
 ## Contributors
-Thanks goes to these people for contributions to this work (emoji key):
+Thanks goes to these people for contributions to this work ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
