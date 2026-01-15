@@ -71,6 +71,17 @@
         "doc",
         "ideas"
       ]
+    },
+    {
+      "login": "jemrobinson",
+      "name": "James Robinson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3502751?v=4",
+      "profile": "https://github.com/jemrobinson",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
     }
   ]
 }
