@@ -22,6 +22,7 @@ Thanks goes to these people for contributions to this work (emoji key):
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://blog.jmadge.com"><img src="https://avatars.githubusercontent.com/u/23616154?v=4?s=100" width="100px;" alt="Jim Madge"/><br /><sub><b>Jim Madge</b></sub></a><br /><a href="#projectManagement-JimMadge" title="Project Management">📆</a> <a href="#doc-JimMadge" title="Documentation">📖</a> <a href="#ideas-JimMadge" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rmbaxter67"><img src="https://avatars.githubusercontent.com/u/125452191?v=4?s=100" width="100px;" alt="Rob Baxter"/><br /><sub><b>Rob Baxter</b></sub></a><br /><a href="#doc-rmbaxter67" title="Documentation">📖</a> <a href="#ideas-rmbaxter67" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
