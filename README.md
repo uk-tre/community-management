@@ -20,6 +20,9 @@ Thanks goes to these people for contributions to this work (emoji key):
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/hardakerm"><img src="https://avatars.githubusercontent.com/u/150800302?v=4?s=100" width="100px;" alt="Madalyn Hardaker"/><br /><sub><b>Madalyn Hardaker</b></sub></a><br /><a href="#projectManagement-hardakerm" title="Project Management">📆</a> <a href="#doc-hardakerm" title="Documentation">📖</a> <a href="#ideas-hardakerm" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jemrobinson"><img src="https://avatars.githubusercontent.com/u/3502751?v=4?s=100" width="100px;" alt="James Robinson"/><br /><sub><b>James Robinson</b></sub></a><br /><a href="#projectManagement-jemrobinson" title="Project Management">📆</a> <a href="#doc-jemrobinson" title="Documentation">📖</a> <a href="#ideas-jemrobinson" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://blog.jmadge.com"><img src="https://avatars.githubusercontent.com/u/23616154?v=4?s=100" width="100px;" alt="Jim Madge"/><br /><sub><b>Jim Madge</b></sub></a><br /><a href="#projectManagement-JimMadge" title="Project Management">📆</a> <a href="#doc-JimMadge" title="Documentation">📖</a> <a href="#ideas-JimMadge" title="Ideas, Planning, & Feedback">🤔</a></td>
+    </tr>
   </tbody>
 </table>
 
