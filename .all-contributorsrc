@@ -7,6 +7,7 @@
   "commitType": "docs",
   "commitConvention": "angular",
   "contributorsPerLine": 7,
+  "contributorTemplate": "<td align=\"center\"><a href=\"{{{profile}}}\"><img src=\"{{{avatar_url}}}\" width=\"100px;\" alt=\"\"/><br /><sub><b>{{{name}}}</b></sub></a><br /><a href=\"https://github.com/uk-tre/community-management/issues?q=involves%3A{{{login}}}\" title=\"View Activity in this repo\">🔍 Activity</a></td>",
   "contributors": [
     {
       "login": "cassgvp",
