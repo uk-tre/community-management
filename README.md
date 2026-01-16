@@ -25,6 +25,7 @@ Thanks goes to these people for contributions to this work ([emoji key](https://
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/rmbaxter67"><img src="https://avatars.githubusercontent.com/u/125452191?v=4?s=100" width="100px;" alt="Rob Baxter"/><br /><sub><b>Rob Baxter</b></sub></a><br /><a href="#doc-rmbaxter67" title="Documentation">📖</a> <a href="#ideas-rmbaxter67" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kbarrass1252"><img src="https://avatars.githubusercontent.com/u/52785892?v=4?s=100" width="100px;" alt="Kimberley Barrass"/><br /><sub><b>Kimberley Barrass</b></sub></a><br /><a href="#doc-kbarrass1252" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AmyzingT"><img src="https://avatars.githubusercontent.com/u/220020153?v=4?s=100" width="100px;" alt="AmyT"/><br /><sub><b>AmyT</b></sub></a><br /><a href="#doc-AmyzingT" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/2smaw"><img src="https://avatars.githubusercontent.com/u/62422237?v=4?s=100" width="100px;" alt="2smaw"/><br /><sub><b>2smaw</b></sub></a><br /><a href="#doc-2smaw" title="Documentation">📖</a> <a href="#review-2smaw" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
 </table>
