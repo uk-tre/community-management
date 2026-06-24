@@ -1,5 +1,8 @@
 [![All Contributors](https://img.shields.io/github/all-contributors/uk-tre/community-management?color=ee8449&style=flat-square)](#contributors)
 
+
+<mark>**All material in this repository is shared as a work in progress. Some material may be missing, under review, or no longer in scope. Please contact the Project & Engagement Cordinator isha.sharma@mft.nhs.uk if you have questions about reuse or contribution.**</mark> 
+
 # community-management
 This repo is for community management, including event planning, meeting notes, governance, discussions. Use this repo for everything that is not direct content for the website
 
