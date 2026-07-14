@@ -7,7 +7,8 @@
   "commitType": "docs",
   "commitConvention": "angular",
   "contributorsPerLine": 6,
-  "contributorTemplate": "<td align='center'><a href='{{{profile}}}'><img src='{{{avatar_url}}}' width='100px;' alt=''/><br /><sub><b>{{{name}}}</b></sub></a><br /><a href='https://github.com/uk-tre/community-management/issues?q=involves%3A{{{login}}}' title='View Activity'>🔍 Activity</a></td>",
+  "contributorsSortAlphabetically": true,
+  "contributorTemplate": "<% var emojis = {'a11y':'♿️','audio':'🔊','blog':'📝','bug':'🐛','business':'💼','code':'💻','content':'🖋','data':'🔣','design':'🎨','doc':'📖','eventOrganizing':'📋','example':'💡','financial':'💵','fundingFinding':'🔍','ideas':'🤔','infra':'🚇','maintenance':'🚧','mentoring':'🧑‍🏫','platform':'📦','plugin':'🔌','projectManagement':'📆','promotion':'📣','question':'💬','research':'🔬','review':'👀','security':'🛡️','talk':'📢','test':'⚠️','tool':'🔧','translation':'🌍','tutorial':'✅','userTesting':'📓','video':'📹'}; %><a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a><br /><% contributor.contributions.forEach(function(type) { %><a href=\"https://github.com/uk-tre/community-management/commits?author=<%= contributor.login %>\" title=\"<%= type %>\"><%= emojis[type] || '✨' %></a> <% }) %><br /><a href=\"https://github.com/uk-tre/community-management/issues?q=involves%3A<%= contributor.login %>\" title=\"View Activity\">🔍 Activity</a>",
   "contributors": [
     {
       "login": "cassgvp",
@@ -15,13 +16,15 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/43407869?v=4",
       "profile": "https://github.com/cassgvp",
       "contributions": [
-        "projectManagement",
+        "maintenance",
         "doc",
         "ideas",
         "tool",
         "infra",
         "maintenance",
         "question"
+        "review",
+        "projectManagement"
       ]
     },
     {
@@ -116,7 +119,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/52785892?v=4",
       "profile": "https://github.com/kbarrass1252",
       "contributions": [
-        "doc"
+        "doc",
+        "review"
       ]
     },
     {
@@ -125,7 +129,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/220020153?v=4",
       "profile": "https://github.com/AmyzingT",
       "contributions": [
-        "doc"
+        "doc",
+        "review"
       ]
     },
     {
@@ -137,6 +142,18 @@
         "doc",
         "review"
       ]
+    },
+    {
+      "login": "betudor",
+      "name": "betudor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/158067176?v=4",
+      "profile": "https://github.com/betudor",
+      "contributions": [
+        "doc",
+        "review",
+        "ideas"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }
