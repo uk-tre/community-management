@@ -46,12 +46,12 @@ Thanks goes to these people for contributions to this work ([emoji key](https://
 
 - [ ] Add a meaningful README file
 - [x] Add a [CONTRIBUTING](CONTRIBUTING.md) file
-- [ ] Add a [LICENSE](LICENSE.md)
+- [x] Add a [LICENSE](LICENSE.md)
 - [ ] Add a [Code of Conduct](CODE_OF_CONDUCT.md) - see [issue 173](https://github.com/uk-tre/community-management/issues/173)
 - [x] Install [all-contributors](https://allcontributors.org/) bot
 - [x] .gitignore file (choose from a template)
 - [x] Create a directory with files for project management (meetings, reports, proposals)
-- [ ] Create a directory for documentation
+- [ ] Create a directories for deliverables or projects
 - [ ] Include acknowledgement of TTW reproducible project template 
 - [ ] Connect repo with Zenodo
 - [ ] Add cff file for citation
