@@ -1,4 +1,4 @@
-# 👋 Welcome to the UK TRE Community Community Management Working Repo 
+# 👋 Welcome to the UK TRE Community Management Working Repo 
 
 ## 💡Introduction
 
