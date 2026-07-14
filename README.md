@@ -4,7 +4,7 @@
 
 This repo is for storing everything related to Community Management for the UK TRE Community.
 
-It is run and maintained by the Community Management Working Group (insert link) (CMWG).
+It is run and maintained by the [Community Management Working Group (CMWG)](https://www.uktre.org/en/latest/structure/community-management.html).
 
 This repo is in general content light - unless not possible, all resources created within this working group will be openly published and shared on the website repo.
 
