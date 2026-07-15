@@ -35,7 +35,7 @@ The CMWG is open for anyone to join!
 
 We have weekly meetings on Tuesdays at 11am to discuss working group matters.
 
-We share joining instructions on the #community-management channel on the UK TRE Slack (insert link) ahead of each meeting.
+We share joining instructions on the `#community-management` channel on the [UK TRE Slack](https://join.slack.com/t/uktrecommunity/shared_invite/zt-2gep86apc-QMLyIdrC2oIIsxTRzLxUqA) ahead of each meeting.
 
 ### ❓Contact 
 
