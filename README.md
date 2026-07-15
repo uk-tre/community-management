@@ -44,6 +44,8 @@ If you have any questions, or want to get in contact, please get in touch with a
 - @manics
 - @davsarper
 - @hardakerm
+[balintstewart77](https://github.com/balintstewart77)
+Pete Barnsley 
 
 Or email us: uktrecommunity@gmail.com 
 
