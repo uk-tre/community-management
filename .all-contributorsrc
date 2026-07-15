@@ -1,0 +1,159 @@
+{
+  "projectName": "community-management",
+  "projectOwner": "uk-tre",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 6,
+  "contributorsSortAlphabetically": true,
+  "contributorTemplate": "<% var emojis = {'a11y':'♿️','audio':'🔊','blog':'📝','bug':'🐛','business':'💼','code':'💻','content':'🖋','data':'🔣','design':'🎨','doc':'📖','eventOrganizing':'📋','example':'💡','financial':'💵','fundingFinding':'🔍','ideas':'🤔','infra':'🚇','maintenance':'🚧','mentoring':'🧑‍🏫','platform':'📦','plugin':'🔌','projectManagement':'📆','promotion':'📣','question':'💬','research':'🔬','review':'👀','security':'🛡️','talk':'📢','test':'⚠️','tool':'🔧','translation':'🌍','tutorial':'✅','userTesting':'📓','video':'📹'}; %><a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a><br /><% contributor.contributions.forEach(function(type) { %><a href=\"https://github.com/uk-tre/community-management/commits?author=<%= contributor.login %>\" title=\"<%= type %>\"><%= emojis[type] || '✨' %></a> <% }) %><br /><a href=\"https://github.com/uk-tre/community-management/issues?q=involves%3A<%= contributor.login %>\" title=\"View Activity\">🔍 Activity</a>",
+  "contributors": [
+    {
+      "login": "cassgvp",
+      "name": "Cassandra Gould van Praag",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43407869?v=4",
+      "profile": "https://github.com/cassgvp",
+      "contributions": [
+        "maintenance",
+        "doc",
+        "ideas",
+        "tool",
+        "infra",
+        "maintenance",
+        "question"
+        "review",
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "manics",
+      "name": "Simon Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1644105?v=4",
+      "profile": "https://github.com/manics",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "Davsarper",
+      "name": "Davsarper",
+      "avatar_url": "https://avatars.githubusercontent.com/u/118986872?v=4",
+      "profile": "https://github.com/Davsarper",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "harisood",
+      "name": "Hari Sood",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67151373?v=4",
+      "profile": "https://github.com/harisood",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "balintstewart77",
+      "name": "Balint Stewart",
+      "avatar_url": "https://avatars.githubusercontent.com/u/123556418?v=4",
+      "profile": "https://github.com/balintstewart77",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "hardakerm",
+      "name": "Madalyn Hardaker",
+      "avatar_url": "https://avatars.githubusercontent.com/u/150800302?v=4",
+      "profile": "https://github.com/hardakerm",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "jemrobinson",
+      "name": "James Robinson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3502751?v=4",
+      "profile": "https://github.com/jemrobinson",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "JimMadge",
+      "name": "Jim Madge",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23616154?v=4",
+      "profile": "https://blog.jmadge.com",
+      "contributions": [
+        "projectManagement",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "rmbaxter67",
+      "name": "Rob Baxter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/125452191?v=4",
+      "profile": "https://github.com/rmbaxter67",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "kbarrass1252",
+      "name": "Kimberley Barrass",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52785892?v=4",
+      "profile": "https://github.com/kbarrass1252",
+      "contributions": [
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "AmyzingT",
+      "name": "AmyT",
+      "avatar_url": "https://avatars.githubusercontent.com/u/220020153?v=4",
+      "profile": "https://github.com/AmyzingT",
+      "contributions": [
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "2smaw",
+      "name": "2smaw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62422237?v=4",
+      "profile": "https://github.com/2smaw",
+      "contributions": [
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "betudor",
+      "name": "betudor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/158067176?v=4",
+      "profile": "https://github.com/betudor",
+      "contributions": [
+        "doc",
+        "review",
+        "ideas"
+      ]
+    }
+  ],
+  "repoType": "github"
+}
