@@ -43,7 +43,6 @@ If you have any questions, or want to get in contact, please get in touch with a
 
 - @manics
 - @davsarper
-- @harisood
 - @hardakerm
 
 Or email us: uktrecommunity@gmail.com 
