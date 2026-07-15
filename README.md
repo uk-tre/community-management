@@ -51,4 +51,4 @@ Or email us: uktrecommunity@gmail.com
 
 ## 📄 Further information
 
-For more information about the community, please visit our website (insert link), and read through our governance docs (insert link).
+For more information about the community, please visit our [website](https://www.uktre.org/), and read through our governance docs (insert link).
