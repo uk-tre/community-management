@@ -35,7 +35,7 @@ Community leaders have the right and responsibility to remove, edit, or reject c
 
 ## Incident Reporting
 
-If you experience or witness unacceptable behaviour, or have any other concerns, please report it by contacting Cassandra Gould van Praag at [cassandra.gouldvanpraag@rcmcooperative.com](mailto:cassandra.gouldvanpraag@rcmcooperative.com), or Simon Li at [s.p.li@dundee.ac.uk](mailto:s.p.li@dundee.ac.uk).
+If you experience or witness unacceptable behaviour, or have any other concerns, please report it by contacting Cassandra Gould van Praag at [cassandra.gouldvanpraag@rcmcooperative.com](mailto:cassandra.gouldvanpraag@rcmcooperative.com), or Claire MacDonald at [Claire.MacDonald3@mft.nhs.uk](mailto:Claire.MacDonald3@mft.nhs.uk).
 
 In your report please include:
 
@@ -105,7 +105,7 @@ Resolution action may also include identifying appropriate members from within t
 ## Feedback
 
 This Code of Conduct is not intended as a static set of rules by which everyone must abide.
-Rather, you are invited to make suggestions for updates or clarifications by contacting Cassandra Gould van Praag at [cassandra.gouldvanpraag@rcmcooperative.com](mailto:cassandra.gouldvanpraag@rcmcooperative.com), Simon Li at [s.p.li@dundee.ac.uk](mailto:s.p.li@dundee.ac.uk), or by making a pull request to this document on GitHub.
+Rather, you are invited to make suggestions for updates or clarifications by contacting Cassandra Gould van Praag at [cassandra.gouldvanpraag@rcmcooperative.com](mailto:cassandra.gouldvanpraag@rcmcooperative.com), Claire MacDonald at [Claire.MacDonald3@mft.nhs.uk](mailto:Claire.MacDonald3@mft.nhs.uk), or by making a pull request to this document on GitHub.
 
 ## Attribution
 
