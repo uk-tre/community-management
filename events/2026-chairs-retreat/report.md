@@ -1,64 +1,40 @@
 # UK TRE Community Review & Report
 ## Executive Summary
 
-In May 2026 the co-chairs of the UK Trusted Research Environment (UK TRE) community met for a strategic retreat to consider the progress of the community, the challenges lying ahead and agree on priorities for the future. The discussions reflect a community that has accomplished a great deal in a very short period of time. The UK TRE conference has grown into a recognised and valued event bringing together technical specialists, governance professionals, legal experts, public contributors, researchers and operational teams from across the sector. This is a big step in a fragmented and fast-moving landscape to create a space where these groups can connect regularly and learn from each other.
-
-&nbsp;
+In May 2026 the co-chairs of the UK Trusted Research Environment (UK TRE) community met for a strategic retreat to consider the progress of the community, the challenges lying ahead and agree on priorities for the future. The discussions reflect a community that has accomplished a great deal in a very short period of time. The UK TRE conference has grown into a recognised and valued event bringing together technical specialists, governance professionals, legal experts, public contributors, researchers and operational teams from across the sector. This is a big step in a fragmented and fast-moving landscape to create a space where these groups can connect regularly and learn from each other. 
 
 The retreat also highlighted a number of challenges that cannot be ignored. The wider TRE ecosystem is growing more complex, with many groups working on similar issues but with little coordination. A lot of the community’s work still depends on volunteer effort, which brings risks around sustainability and capacity. There is also an increasing need to ensure that the community’s activities remain focused on areas where it can add the most value. A key theme from the retreat was that the UK TRE Community should focus on two core roles. First, to sustain the delivery and development of the annual conference as an important national convening event. Second, a connector and coordinator in the wider TRE ecosystem, helping organisations and initiatives work better together. Wherever possible, other activities should be delivered in collaboration rather than in parallel.
 
-&nbsp;
+## Background
 
-**Background**
-
-TRE is gaining recognition as the standard approach to secure access of sensitive data in research, health, government and public sector settings.
-
-The UK TRE Community was set up to provide a collaborative forum for those who design, govern, operate and use TREs. As the field has grown, so has the need to think about how the community grows and where it can have the most impact.
-
-&nbsp;
-
-The May 2026 retreat was an opportunity for community leaders and contributors to step away from their day-to-day work and reflect on a number of key questions:
+TRE is gaining recognition as the standard approach to secure access of sensitive data in research, health, government and public sector settings. The UK TRE Community was set up to provide a collaborative forum for those who design, govern, operate and use TREs. As the field has grown, so has the need to think about how the community grows and where it can have the most impact. The May 2026 retreat was an opportunity for community leaders and contributors to step away from their day-to-day work and reflect on a number of key questions:
 
 1.  What has the community accomplished to date?
 2.  What activities generate the most value?
 3.  What are the biggest risks and challenges?
 4.  What would a model of a sustainable future look like?
 
-&nbsp;
-
 The discussions considered both the current state of the community and the wider policy, governance, and technology landscape in which TREs operate.
 
-**Key Achievements**
+## Key Achievements
 
-&nbsp;
-
-Building a National Community
+### Building a National Community
 
 One of the major successes of the community has been to bring together people who would otherwise be working in isolation. The annual conference has become a forum for the sector, and has been instrumental in generating new collaborations, working groups, partnerships and funded initiatives. Co-chairs highlight the significance of peer-to-peer engagement and the chance to share experiences and learn from organisations facing similar challenges. Those working in and around TREs have also developed a greater sense of professional identity which helps to build connections across institutions and disciplines . This progress is encouraging, but there is also value in understanding how far the community reaches beyond its existing networks and how it can continue to bring new organisations and perspectives into the fold.
 
-&nbsp;
-
-Promoting Open Collaboration
+### Promoting Open Collaboration
 
 The retreat reinforced the community's commitment to openness, shared learning, and collaborative development. There remains strong support for open-source approaches, reusable outputs, and the principle that publicly funded work should create resources that can be shared and reused across the wider sector. This commitment continues to be one of the community's defining strengths.
 
-&nbsp;
+## Strategic Priorities
 
-**Strategic Priorities**
-
-&nbsp;
-
-Supporting the Normalisation of TREs
+### Supporting the Normalisation of TREs
 
 There was agreement that TREs should become a routine and trusted part of conducting sensitive data research. Improving researcher experience, reducing unnecessary barriers, and increasing awareness among data custodians and decision-makers were all identified as important objectives. However, co-chairs also recognised that achieving this ambition will require action from a wide range of stakeholders, including funders, regulators, institutions, and policymakers. The community's role is therefore best understood as one of influence, coordination, and advocacy rather than direct delivery.
 
-&nbsp;
-
-Encouraging Open and Interoperable Approaches
+### Encouraging Open and Interoperable Approaches
 
 The community remains well placed to support conversations around standards, interoperability, and reusable infrastructure. By helping organisations learn from one another and share common approaches, the community can contribute to reducing duplication and lowering barriers for newer or smaller organisations entering the field.
-
-&nbsp;
 
 Strengthening Collaboration Across the Ecosystem
 
