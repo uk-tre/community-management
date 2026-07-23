@@ -36,71 +36,57 @@ There was agreement that TREs should become a routine and trusted part of conduc
 
 The community remains well placed to support conversations around standards, interoperability, and reusable infrastructure. By helping organisations learn from one another and share common approaches, the community can contribute to reducing duplication and lowering barriers for newer or smaller organisations entering the field.
 
-Strengthening Collaboration Across the Ecosystem
+### Strengthening Collaboration Across the Ecosystem
 
 A recurring theme throughout the retreat was the need for greater coordination across the growing number of groups operating within the TRE and wider data access landscape. While there is strong goodwill and a shared desire to collaborate, co-chairs recognised that overlapping initiatives and duplicated effort remain common. The opportunity for the community is to help improve connectivity, communication, and alignment between groups without seeking to control or replace existing initiatives.
 
-&nbsp;
-
-Supporting Workforce Development
+### Supporting Workforce Development
 
 The TRE workforce continues to grow, but career pathways, role definitions, and competency frameworks remain inconsistent across organisations. Co-chairs recognised the importance of supporting professional development in this area. However, there was also a clear view that the community should work alongside existing initiatives rather than creating additional parallel programmes.
 
-**Governance, Regulation, and Public Trust**
+### Governance, Regulation, and Public Trust
 
-&nbsp;
-
-Public Trust
+### Public Trust
 
 The discussions during the retreat highlighted the importance of ensuring that public engagement moves beyond awareness-raising and supports meaningful involvement in discussions about how sensitive data is accessed, governed, and used.
 
 Building trust requires transparency, accountability, and clear evidence that public perspectives are informing decisions.
 
-&nbsp;
-
-**Legal and Regulatory Change**
+### Legal and Regulatory Change
 
 The regulatory environment surrounding data access and research continues to evolve rapidly.
 
 Developments relating to data protection, artificial intelligence, cyber security, and data-sharing frameworks create both opportunities and challenges for organisations operating TREs. Co-chairs agreed that the community can provide value by supporting horizon scanning, sharing guidance, and creating opportunities for collective learning and discussion.
 
-**Transparency**
+### Transparency
 
 There was strong support for increasing transparency around data use, governance arrangements, and research activity. Transparency not only supports public confidence but also strengthens accountability and helps demonstrate the value that secure data access can deliver.
 
-&nbsp;
+### Key Risks
 
-**Key Risks**
+### Fragmentation
 
-Fragmentation
+Fragmentation was identified as the most significant strategic risk facing the wider ecosystem. The growing number of groups, initiatives, and networks working on related issues creates a risk of duplication, reduced visibility, and missed opportunities for collaboration. Improving coordination across the landscape is therefore one of the areas where the community could potentially add the greatest value.
 
-Fragmentation was identified as the most significant strategic risk facing the wider ecosystem.
-
-The growing number of groups, initiatives, and networks working on related issues creates a risk of duplication, reduced visibility, and missed opportunities for collaboration. Improving coordination across the landscape is therefore one of the areas where the community could potentially add the greatest value.
-
-Sustainability
+### Sustainability
 
 Much of the community's success has been made possible through the dedication and goodwill of volunteers. While this has enabled significant progress, it is unlikely to provide a sustainable long-term model. Without additional capacity and support, there is a risk that key activities become difficult to maintain and that community leaders face increasing pressure on their time.
 
-Maintaining Momentum
+### Maintaining Momentum
 
 As with many collaborative networks, there is a risk that valuable discussions do not always translate into sustained action. Co-chairs recognised the importance of developing practical mechanisms that help turn ideas into deliverable outcomes while recognising the capacity constraints faced by many contributors.
 
-&nbsp;
-
 **Future Direction**
 
-Continuing to Grow the Conference
+### Continuing to Grow the Conference
 
 The annual conference should remain the community's flagship activity and primary convening event. Future development should focus on broadening co-chairs, increasing representation from policy and public involvement communities, and ensuring the programme continues to evolve alongside the needs of the sector.
 
-Strengthening Coordination
+### Strengthening Coordination
 
 The retreat identified coordination as one of the most significant opportunities for future development. Practical activities such as shared communications, coordinated calendars, improved onboarding, and stronger links between existing initiatives could help reduce duplication and improve visibility across the ecosystem. The aim is not to create a central authority, but to improve connectivity and collaboration between independent groups with shared interests.
 
-&nbsp;
-
-**Recommendations**
+### Recommendations
 
 The retreat concluded with six recommendations:
 
@@ -111,7 +97,7 @@ The retreat concluded with six recommendations:
 5.  Develop a sustainability plan that addresses the community's reliance on volunteer capacity and explores options for future support.
 6.  Continue promoting open, collaborative, and interoperable approaches as core principles across all community activities.
 
-**Assessment**
+### Assessment
 
 Following review of the UK TRE Community's activities, governance arrangements, strategic objectives, sustainability planning, and proposed delivery model, the overall assessment is:
 
@@ -127,9 +113,7 @@ Following review of the UK TRE Community's activities, governance arrangements, 
 | Resource Capacity | 🟠 Amber | Heavy reliance on volunteer effort presents operational risks. |
 | Overall Programme Confidence | 🟢 Green/Amber | Strong likelihood of successful delivery provided sustainability and coordination risks are actively managed. |
 
-&nbsp;
-
-**Strategic Risk Register**
+### Strategic Risk Register
 
 |     |     |     |     |     |     |
 | --- | --- | --- | --- | --- | --- |
@@ -144,8 +128,6 @@ Following review of the UK TRE Community's activities, governance arrangements, 
 | R8  | Reduced external funding landscape | Medium | High | 🟠 Amber | Develop scalable operating models. |
 | R9  | Public trust challenges arising from wider data incidents | Low | High | 🟠 Amber | Continue transparency and public engagement activities. |
 | R10 | Failure to demonstrate measurable impact | Medium | Medium | 🟠 Amber | Develop KPIs and community impact metrics. |
-
-&nbsp;
 
 **Stakeholder Analysis**
 
@@ -164,15 +146,11 @@ Following review of the UK TRE Community's activities, governance arrangements, 
 - Manchester University NHS Foundation Trust
 - King's College London - individual / high influence & high interest
 
-&nbsp;
-
 **Engagement Strategy**
 
 - Monthly engagement
 - Strategic planning involvement
 - Shared decision-making
-
-&nbsp;
 
 **High Influence / Medium Interest**
 
@@ -185,15 +163,11 @@ Following review of the UK TRE Community's activities, governance arrangements, 
 - National Data Guardian
 - Information Commissioner's Office
 
-&nbsp;
-
 **Engagement Strategy**
 
 - Quarterly strategic updates
 - Consultation opportunities
 - Policy engagement
-
-&nbsp;
 
 **Medium Influence / High Interest**
 
@@ -213,8 +187,6 @@ Following review of the UK TRE Community's activities, governance arrangements, 
 - Conference participation
 - Collaborative projects
 
-&nbsp;
-
 **Emerging Stakeholders**
 
 **Future Strategic Partners**
@@ -226,19 +198,13 @@ Following review of the UK TRE Community's activities, governance arrangements, 
 - National Cyber Security Centre
 - Academic Training Programmes
 
-&nbsp;
-
 **Engagement Strategy**
 
 - Targeted outreach
 - Strategic partnerships
 - Conference representation
 
-&nbsp;
-
 **Delivery Roadmap (June 2026 - March 2027)**
-
-&nbsp;
 
 **Phase 1: Consolidation**
 
@@ -260,8 +226,6 @@ Success Measure:
 
 - Report approved by CMWG
 
-&nbsp;
-
 **Phase 2: Community Validation**
 
 **July - September 2026**
@@ -282,8 +246,6 @@ Success Measure:
 
 - Representation from all major stakeholder groups
 
-&nbsp;
-
 **Phase 3: Strategy Launch**
 
 **October 2026**
@@ -302,8 +264,6 @@ Deliverables:
 Success Measure:
 
 - Formal community endorsement
-
-&nbsp;
 
 **Phase 4: Pilot Interventions**
 
@@ -324,8 +284,6 @@ Success Measure:
 
 - Increased engagement and reduced duplication
 
-&nbsp;
-
 **Phase 5: Sustainability Planning**
 
 **January - March 2027**
@@ -344,8 +302,6 @@ Success Measure:
 
 - Sustainable funding options identified
 - Leadership pipeline established
-
-&nbsp;
 
 **Recommended Key Performance Indicators (KPIs) - further work to develop (mountain of engagement)**
 
@@ -372,8 +328,6 @@ Success Measure:
 - Community satisfaction score
 - Stakeholder engagement score
 - Adoption of shared standards and practices
-
-&nbsp;
 
 # UK TRE Community Project Deliverables
 
