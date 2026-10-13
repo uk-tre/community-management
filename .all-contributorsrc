@@ -153,6 +153,15 @@
         "review",
         "ideas"
       ]
+    },
+    {
+      "login": "isharma-97",
+      "name": "isharma-97",
+      "avatar_url": "https://avatars.githubusercontent.com/u/278959808?v=4",
+      "profile": "https://github.com/isharma-97",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "repoType": "github"
