@@ -2,6 +2,9 @@
 private
 private/*
 
+# files which are currently open
+~$
+
 # OS dependent metadata files
 .DS_Store
 
