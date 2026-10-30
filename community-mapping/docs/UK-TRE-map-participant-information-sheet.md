@@ -2,6 +2,10 @@
 
 2026-10-20 · Cass
 
+**Please cite this project as:**
+
+*Besleaga, T., Li, S., Gould van Praag, G. van P., Hardaker, M., MacDonald, C., Madge, J., Robinson, J., & Sharma, I. (2026). UK TRE Community Mapping Project. Zenodo. https://doi.org/10.5281/zenodo.23806942*
+
 |                 |                                                                        |
 |-----------------|------------------------------------------------------------------------|
 | Project contact | Cassandra Gould van Praag (cassandra.gouldvanpraag@rcmcooperative.com) |
