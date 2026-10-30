@@ -22,15 +22,6 @@
 
     filter {
       target: element;
-      by: "link-status";
-      as: dropdown;
-      multiple: true;
-      default: show-all;
-      label: "filter by email-link status";
-    }
-
-    filter {
-      target: element;
       by: "on-slack";
       as: dropdown;
       multiple: true;
@@ -46,12 +37,137 @@
       default: show-all;
       label: "on Jisc";
     }
+
+    filter {
+      target: element;
+      by: "career-stage";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by career stage";
+    }
+
+    filter {
+      target: element;
+      by: "career-role-type";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by career role type";
+    }
+
+    filter {
+      target: connection;
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by connection type";
+
+      option {
+        label: "lead";
+        selector: connection["connection-type"="lead"];
+      }
+
+      option {
+        label: "member";
+        selector: connection["connection-type"="member"];
+      }
+
+      option {
+        label: "affiliation";
+        selector: connection["connection-type"="affiliation"];
+      }
+    }
+
+    showcase {
+      target: element;
+      by: "type-display";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by type";
+    }
+
+    showcase {
+      target: element;
+      by: "mapping-consent";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by consent for mapping";
+    }
+
+    showcase {
+      target: element;
+      by: "on-slack";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase: on Slack";
+    }
+
+    showcase {
+      target: element;
+      by: "on-jisc";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase: on Jisc";
+    }
+
+    showcase {
+      target: element;
+      by: "career-stage";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by career stage";
+    }
+
+    showcase {
+      target: element;
+      by: "career-role-type";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by career role type";
+    }
   }
+
+  top-right {
+    zoom-toolbar {}
+    settings-toolbar {}
+    focus-toolbar {}
+    legend {}
+  }
+
+  bottom-left {}
 }
 
 @settings {
   template: stakeholder;
   element-shape: categorize("type-display");
   element-scale: scale("Size", 0.5, 3);
-  element-color: categorize("type-display", #000000 "Person", #004488 "working-group", #6699CC "interest-group", #CC6677 "Funder", #332288 "Consortium", #DDCC77 "Academic institute", #117733 "Public sector / Government", #88CCEE "Intergovernmental organisation", #882255 "Non-profit", #44AA99 "Social enterprise", #999933 "Cooperative", #AA4499 "Private industry");
+  element-color: categorize("type-display", #DDCC77 "Academic institute", #332288 "Consortium", #999933 "Cooperative", #CC6677 "Funder", #6699CC "interest-group", #88CCEE "Intergovernmental organisation", #882255 "Non-profit", #000000 "Person", #AA4499 "Private industry", #117733 "Public sector / Government", #44AA99 "Social enterprise", #004488 "working-group", #99AABB "working-group-unconfirmed");
+}
+
+connection["connection-type"="lead"] {
+  color: #004488;
+  pattern: solid;
+}
+
+connection["connection-type"="member"] {
+  color: #6699CC;
+  pattern: dashed;
+}
+
+connection["connection-type"="affiliation"] {
+  color: #999999;
+  pattern: solid;
 }

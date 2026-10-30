@@ -1,0 +1,173 @@
+@controls {
+  top-left {
+    search {}
+
+    filter {
+      target: element;
+      by: "type-display";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by type";
+    }
+
+    filter {
+      target: element;
+      by: "mapping-consent";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by consent for mapping";
+    }
+
+    filter {
+      target: element;
+      by: "on-slack";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "on Slack";
+    }
+
+    filter {
+      target: element;
+      by: "on-jisc";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "on Jisc";
+    }
+
+    filter {
+      target: element;
+      by: "career-stage";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by career stage";
+    }
+
+    filter {
+      target: element;
+      by: "career-role-type";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by career role type";
+    }
+
+    filter {
+      target: connection;
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by connection type";
+
+      option {
+        label: "lead";
+        selector: connection["connection-type"="lead"];
+      }
+
+      option {
+        label: "member";
+        selector: connection["connection-type"="member"];
+      }
+
+      option {
+        label: "affiliation";
+        selector: connection["connection-type"="affiliation"];
+      }
+    }
+
+    showcase {
+      target: element;
+      by: "type-display";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by type";
+    }
+
+    showcase {
+      target: element;
+      by: "mapping-consent";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by consent for mapping";
+    }
+
+    showcase {
+      target: element;
+      by: "on-slack";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase: on Slack";
+    }
+
+    showcase {
+      target: element;
+      by: "on-jisc";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase: on Jisc";
+    }
+
+    showcase {
+      target: element;
+      by: "career-stage";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by career stage";
+    }
+
+    showcase {
+      target: element;
+      by: "career-role-type";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by career role type";
+    }
+  }
+
+  top-right {
+    zoom-toolbar {}
+    settings-toolbar {}
+    focus-toolbar {}
+    legend {}
+  }
+
+  bottom-left {}
+}
+
+@settings {
+  template: stakeholder;
+  element-shape: categorize("type-display");
+  element-scale: scale("Size", 0.5, 3);
+  element-color: categorize("type-display", {{TYPE_COLOURS}});
+}
+
+connection["connection-type"="lead"] {
+  color: #004488;
+  pattern: solid;
+}
+
+connection["connection-type"="member"] {
+  color: #6699CC;
+  pattern: dashed;
+}
+
+connection["connection-type"="affiliation"] {
+  color: #999999;
+  pattern: solid;
+}

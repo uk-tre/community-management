@@ -8,8 +8,13 @@ need editing for ordinary schema drift.
 
 Data model (privacy constraint for this client)
 -----------------------------------------------
-No email addresses and no names live in Baserow. Individually identifiable
-data lives in SharePoint; Baserow holds sharepoint-ids and UUIDs only.
+No email addresses live in Baserow. Email addresses (and the names taken from
+Slack / Jisc sign-up) live in SharePoint on MFT infrastructure; Baserow holds
+sharepoint-ids and UUIDs. People-email also holds the first name and surname
+a person typed into the form (name-first-user-nominated,
+name-surname-user-nominated). The pipeline uses those two fields ONLY for the
+label of a PUBLIC IDENTIFIABLE person; they never appear on the internal map
+or at any other tier.
 
   People-email    one row per email address. Primary field is the
                   sharepoint-id-email number. Consent is recorded PER EMAIL
@@ -40,6 +45,10 @@ Conventions
 - No commas are allowed in organisation or working-group names (Baserow
   exports multi-value cells as comma-separated text). The pipeline refuses
   to run if one is found.
+- "**Other" (an Organisations / Working-Groups row people pick when their
+  organisation or group is not yet in the CRM) must not be left in use. The
+  pipeline refuses to run while any People-email row is affiliated with it.
+  See COMMA_FLAG_FIELD and OTHER_PLACEHOLDER below.
 """
 
 # ---------------------------------------------------------------------------
@@ -51,9 +60,10 @@ STUB_PEOPLE_STACKED = "People-stacked"
 STUB_ORGANISATIONS = "Organisations"
 STUB_WORKING_GROUPS = "Working-Groups"
 
-# Optional (private) file mapping people to real names, for the public map's
-# identifiable tier only. Names are NOT in Baserow. If absent, public-
-# identifiable people are labelled with a stable pseudonym like everyone else.
+# Optional (private) FALLBACK file mapping people to reviewed names, for the
+# public map's identifiable tier only. Used only when a person has no complete
+# first name + surname in People-email (see NAME_FIELDS). If neither supplies
+# a name, a public-identifiable person is labelled with a stable pseudonym.
 # CSV with columns: baserow-UUID-person, name
 NAMES_FILE_NAME = "names-for-public-map.csv"
 
@@ -73,11 +83,13 @@ EXPECTED_COLUMNS = {
         "slack", "jisc", "consent-mapping",
         "email-orgs-user-nominated", "email-institutional-profile",
         "email-ORCID", "email-github", "email-linkedIn",
-        "email-career-role-title", "email-career-stage",
+        "email-career-role-type", "email-career-stage",
+        "name-first-user-nominated", "name-surname-user-nominated",
         "email-notes-internal", "email-notes-user-nominated",
         "email-wg-lead-user-nominated", "email-wg-member-user-nominated",
         "baserow-uuid-email-user-nominated", "data-user-validation",
         "email-socials-user-nominated",
+        "email-bounced", "email-bounced-date",
     ],
     STUB_PEOPLE_STACKED: [
         "id", "baserow-UUID-person", "sharepoint-id-emails", "email-count",
@@ -95,7 +107,13 @@ EXPECTED_COLUMNS = {
     ],
 }
 
-# Columns checked for commas (hard stop). Per table.
+# Baserow formula column that is non-empty when a row's name contains a comma.
+# Present on Organisations and Working-Groups (and listed in EXPECTED_COLUMNS
+# above). A row with this flag set is a hard stop.
+COMMA_FLAG_FIELD = "flag-comma-error"
+
+# Columns also checked directly for commas (belt and braces: the Baserow flag
+# only looks at the *-long name, not the abbreviation). Per table.
 COMMA_FREE_FIELDS = {
     STUB_ORGANISATIONS: ["name-org", "name-org-long", "name-org-abbreviation"],
     STUB_WORKING_GROUPS: [
@@ -103,6 +121,53 @@ COMMA_FREE_FIELDS = {
         "name-DARE-group-abbreviation",
     ],
 }
+
+# "**Other" is a row in both Organisations and Working-Groups that people can
+# be affiliated with when their organisation / group is not yet in the CRM.
+# Any People-email row whose columns below name it is a hard stop (fix in
+# Baserow, re-export). The match is EXACT (after stripping surrounding
+# whitespace): "**other" or "Other" do not match.
+# The "**Other" row itself never becomes a node or an edge target.
+OTHER_PLACEHOLDER = "**Other (not listed below)"  # exact label of the row in Organisations and Working-Groups
+OTHER_CHECK_FIELDS = ["email-organisation", "email-wg-lead", "email-wg-member"]
+
+# ---------------------------------------------------------------------------
+# Multi-select fields
+# ---------------------------------------------------------------------------
+# Baserow exports a multiple-select cell as comma-separated text, but some
+# option names themselves contain commas ("Funder, policy-maker or regulator"),
+# so the cell cannot be split on commas. The cell is matched against the known
+# options instead (longest first). Keep this list in step with Baserow: a
+# value not listed here is kept as typed, with a warning (and, if it contains
+# a comma, would be split into fragments). Order = output order.
+
+CAREER_ROLE_TYPE_OPTIONS = [
+    "TRE team member",
+    "Researcher",
+    "TRE Host-organisation IT professional",
+    "TRE Host-organisation IG professional",
+    "Technology or service supplier",
+    "Funder, policy-maker or regulator",
+    "Data provider or custodian",
+    "Public, patient or charity representative",
+    "Other",
+]
+
+# People-email source field -> its known options.
+MULTI_SELECT_FIELDS = {
+    "email-career-role-type": CAREER_ROLE_TYPE_OPTIONS,
+}
+
+# ---------------------------------------------------------------------------
+# Names (public identifiable label only)
+# ---------------------------------------------------------------------------
+# User-nominated first name and surname on People-email. Combined across a
+# person's confirmed-linked emails with the "first non-empty" rule (lowest
+# sharepoint-id wins; warning if emails disagree). BOTH parts are needed;
+# otherwise the person keeps the hashed pseudonym label. A comma in a name
+# that would be used is a hard stop (it would split the Kumu label).
+
+NAME_FIELDS = ("name-first-user-nominated", "name-surname-user-nominated")
 
 # ---------------------------------------------------------------------------
 # Node types
@@ -136,6 +201,38 @@ WG_NODE = {
 TYPE_DISPLAY_SOURCE_FIELD = {
     TYPE_ORGANISATION: "type",
     TYPE_WORKING_GROUP: "type",
+}
+
+# type-display value -> hex colour. SINGLE SOURCE OF TRUTH for the Kumu legend:
+# the pipeline writes only the values actually present in the data into
+# references/kumu-display-settings-internal (from the .template), in THIS
+# order. Rebuild from the possible values of Organisations.type and
+# Working-Groups.type (Baserow single selects) plus the node-type fallbacks
+# used when `type` is blank. Values must not contain a double quote.
+TYPE_DISPLAY_COLOURS = {
+    TYPE_PERSON: "#000000",
+    # Working-Groups.type
+    "working-group": "#004488",
+    "interest-group": "#6699CC",
+    # Organisations.type
+    "Funder": "#CC6677",
+    "Consortium": "#332288",
+    "Academic institute": "#DDCC77",
+    "Public sector / Government": "#117733",
+    "Intergovernmental organisation": "#88CCEE",
+    "Non-profit": "#882255",
+    "Social enterprise": "#44AA99",
+    "Cooperative": "#999933",
+    "Private industry": "#AA4499",
+    # Fallbacks when `type` is blank, i.e. not yet confirmed (the pipeline also warns)
+    "organisation-unconfirmed": "#DDDDDD",
+    "working-group-unconfirmed": "#99AABB",
+}
+
+# type-display value used when the source `type` field is blank.
+TYPE_DISPLAY_FALLBACK = {
+    TYPE_ORGANISATION: "organisation-unconfirmed",
+    TYPE_WORKING_GROUP: "working-group-unconfirmed",
 }
 
 # ---------------------------------------------------------------------------
@@ -172,6 +269,7 @@ CONSENT_CANONICAL = {
     3: "public pseudonymised",
     4: "public identifiable",
 }
+CONSENT_NONE_RANK = 0  # excluded from BOTH workbooks
 CONSENT_DEFAULT_RANK = 1  # blank -> not-asked
 CONSENT_PUBLIC_PSEUDONYMISED_RANK = 3
 CONSENT_PUBLIC_IDENTIFIABLE_RANK = 4
@@ -195,6 +293,8 @@ EMAIL_UUID_NOMINATED_FIELD = "baserow-uuid-email-user-nominated"
 #   "first": first non-empty value in sharepoint-id order; a warning is
 #            raised if two emails give DIFFERENT non-empty values.
 #   "union": distinct values, pipe-joined.
+#   "union-options": multi-select field: distinct options across the emails,
+#            in config option order, pipe-joined (see MULTI_SELECT_FIELDS).
 # ---------------------------------------------------------------------------
 
 PERSON_FIELD_MAP = {
@@ -203,16 +303,16 @@ PERSON_FIELD_MAP = {
     "github":               ("email-github",               "first"),
     "linkedin":             ("email-linkedIn",             "first"),
     "institutional-profile": ("email-institutional-profile", "first"),
-    "career-role-title":    ("email-career-role-title",    "union"),
+    "career-role-type":     ("email-career-role-type",     "union-options"),
     "career-stage":         ("email-career-stage",         "union"),
     "notes":                ("email-notes-internal",       "union"),
 }
 
 # Blanked on the PSEUDONYMISED public tier (person appears under a hashed
-# label with these fields stripped).
+# label with these fields stripped). Career role type and career stage are
+# deliberately NOT here: they are public at both public tiers.
 PERSON_IDENTIFIABLE_FIELDS = [
     "ORCID", "github", "linkedin", "institutional-profile",
-    "career-role-title",
 ]
 
 # Internal export only, stripped from the public export at EVERY consent
@@ -225,7 +325,8 @@ PERSON_INTERNAL_ONLY_FIELDS = [
 
 # People-email fields NEVER carried into either export:
 #   - every "-user-nominated" field (self-nominated free text, unreviewed
-#     staging data for manual review; see references/schema.md),
+#     staging data for manual review; see references/schema.md), EXCEPT the two
+#     NAME_FIELDS, which feed the public identifiable label only,
 #   - email-notes-user-nominated, email-socials-user-nominated,
 #   - Created by / Last modified by (staff identities).
 

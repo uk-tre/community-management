@@ -6,16 +6,21 @@ Reads four Baserow exports (People-email, People-stacked, Organisations,
 Working-Groups), builds Kumu-ready elements + connections workbooks, and
 writes TWO versions:
 
-  kumu-import-internal-<date>.xlsx  Every person, as their best-guess
-                                    People-stacked node, labelled by Baserow
-                                    UUID (no names exist in Baserow). Full
-                                    profile, per-email Slack/Jisc detail.
+  kumu-import-internal-<date>.xlsx  Every person except consent "none", as
+                                    their best-guess People-stacked node,
+                                    labelled by Baserow UUID, with the same
+                                    hashed pseudonymised-id as the public map.
+                                    No names. Full profile, per-email
+                                    Slack/Jisc detail.
   kumu-import-public-<date>.xlsx    Consent-filtered. Only people whose
                                     (rolled-up) consent is public appear.
                                     Everyone is labelled by a stable hashed
-                                    pseudonym unless an optional names file
-                                    supplies a name for a public-identifiable
-                                    person. No sharepoint-ids, no UUIDs.
+                                    pseudonym, except public-identifiable
+                                    people with a complete first name +
+                                    surname in People-email (or, as a
+                                    fallback, the optional names file), who
+                                    are labelled by name. No sharepoint-ids,
+                                    no UUIDs.
 
 Deterministic, pure Python (pandas + openpyxl). No LLM calls.
 
@@ -29,9 +34,26 @@ The pseudonymisation salt lives at a FIXED path (--salt-file, default
 private/crm/pseudonym-salt.txt) so pseudonyms stay stable across dated
 export folders.
 
+  references/kumu-display-settings-internal
+                                    GENERATED each run from the hand-edited
+                                    references/kumu-display-settings-internal.template:
+                                    the Kumu legend/colour code listing only
+                                    the type-display values present in the
+                                    internal elements (colours from
+                                    config.TYPE_DISPLAY_COLOURS).
+  references/kumu-display-settings-public
+                                    The same, for the PUBLIC map, generated from
+                                    references/kumu-display-settings-public.template
+                                    (legend limited to the types in the public
+                                    elements; text blocks and public-only filters).
+
 The pipeline STOPS (non-zero exit, nothing written) on:
   - missing expected columns (schema drift),
-  - commas in organisation / working-group names,
+  - commas in organisation / working-group names (flag-comma-error is set),
+  - any People-email row affiliated with the "**Other" placeholder
+    organisation / working group, and any comma in a first name / surname that
+    would be used as a public label (all reported together with the comma
+    rows, in one message, BEFORE the pseudonymisation salt is read),
   - duplicate sharepoint-ids, or an email linked to more than one person,
   - positional lookup lists on People-stacked whose lengths disagree with
     the linked emails (the position-based Slack/Jisc design relies on this),
@@ -47,17 +69,33 @@ import argparse
 import glob
 import hashlib
 import os
+import re
 import secrets
 import sys
-from datetime import date
+from datetime import date, datetime
+from pathlib import Path
 
 import pandas as pd
 
 import config
 
 
+# Resolved from this file, not the current directory, so the run works from
+# the repo root (or anywhere).
+REFERENCES_DIR = Path(__file__).resolve().parent.parent / "references"
+DISPLAY_SETTINGS_NAME = "kumu-display-settings-internal"
+DISPLAY_SETTINGS_PUBLIC_NAME = "kumu-display-settings-public"
+PIS_URL_PLACEHOLDER = "[PIS-URL]"
+TYPE_COLOURS_PLACEHOLDER = "{{TYPE_COLOURS}}"
+
+
 class PipelineError(Exception):
     """Raised for conditions that must stop the run."""
+
+
+class PreflightStop(PipelineError):
+    """Rows that must be fixed in Baserow. The message is already complete
+    (one or more 'STOPPED: ...' sections), so main() prints it as is."""
 
 
 # ---------------------------------------------------------------------------
@@ -130,6 +168,52 @@ def split_multi(value) -> list[str]:
     if not value:
         return []
     return [v.strip() for v in value.split(",") if v.strip()]
+
+
+def parse_multi_select(value, options: list[str], where: str, warnings: set) -> list[str]:
+    """
+    Parse a Baserow multiple-select cell. Options may contain commas, so the
+    text is matched against the known options (longest first) rather than split
+    on commas. Anything that matches no option is kept as typed (up to the next
+    comma) with a warning. Returns the distinct values: known options in
+    config order, then unknown values in the order found.
+    """
+    # Baserow CSV wraps a comma-containing option in double quotes: drop them
+    # (no option contains a quote).
+    text = safe_str(value).replace('"', "")
+    if not text:
+        return []
+    by_length = sorted(options, key=len, reverse=True)
+    found: list[str] = []
+    pos = 0
+    while pos < len(text):
+        rest = text[pos:]
+        for opt in by_length:
+            if rest.startswith(opt) and (len(rest) == len(opt) or rest[len(opt):].lstrip().startswith(",")):
+                found.append(opt)
+                pos += len(opt)
+                break
+        else:
+            comma = rest.find(",")
+            token = (rest if comma < 0 else rest[:comma]).strip()
+            if token:
+                warnings.add(
+                    f"{where}: value '{token}' is not in the known options for this field "
+                    f"(config.MULTI_SELECT_FIELDS) -- kept as typed. Add it to the list in "
+                    f"config.py (a value containing a comma is otherwise split into fragments)."
+                )
+                found.append(token)
+            pos += len(rest) if comma < 0 else comma
+        while pos < len(text) and text[pos] in ", ":
+            pos += 1
+    return order_options(found, options)
+
+
+def order_options(values, options: list[str]) -> list[str]:
+    """Distinct values: known options in config order, then unknown in first-seen order."""
+    distinct = unique(values)
+    known = [o for o in options if o in distinct]
+    return known + [v for v in distinct if v not in options]
 
 
 def join_pipe(values) -> str:
@@ -217,22 +301,144 @@ def consent_rank(value: str, where: str, warnings: set) -> int:
 # Pre-flight checks (hard stops)
 # ---------------------------------------------------------------------------
 
-def check_commas(tables: dict[str, pd.DataFrame]) -> None:
-    problems = []
+def _label_field_for(stub: str) -> str | None:
+    return {
+        config.STUB_ORGANISATIONS: config.ORG_NODE["label_field"],
+        config.STUB_WORKING_GROUPS: config.WG_NODE["label_field"],
+    }.get(stub)
+
+
+def check_comma_flags(tables: dict[str, pd.DataFrame]) -> list[str]:
+    """
+    Rows whose name contains a comma. A row is a problem if the Baserow flag
+    column (config.COMMA_FLAG_FIELD) is non-empty after stripping whitespace
+    (NaN counts as empty), or if a name column listed in
+    config.COMMA_FREE_FIELDS contains a comma. Returns message lines
+    (empty list = fine); never raises.
+    """
+    lines = []
     for stub, fields in config.COMMA_FREE_FIELDS.items():
         df = tables[stub]
+        label_field = _label_field_for(stub)
         for _, row in df.iterrows():
-            for f in fields:
-                if "," in safe_str(row[f]):
-                    problems.append(f"{stub} id={safe_str(row['id'])} field '{f}': '{safe_str(row[f])}'")
-            if safe_str(row["flag-comma-error"]):
-                problems.append(f"{stub} id={safe_str(row['id'])}: flag-comma-error is set")
-    if problems:
-        raise PipelineError(
-            "Commas found in organisation / working-group names (these break "
-            "multi-value parsing). Fix in Baserow and re-export:\n  - "
-            + "\n  - ".join(sorted(set(problems)))
-        )
+            flagged = bool(safe_str(row[config.COMMA_FLAG_FIELD]))
+            comma_fields = [f for f in fields if "," in safe_str(row[f])]
+            if not (flagged or comma_fields):
+                continue
+            line = f"  - {stub} id={safe_str(row['id'])}: '{safe_str(row[label_field])}'"
+            if not flagged:
+                line += (f" (the comma is in {comma_fields}, which '{config.COMMA_FLAG_FIELD}' "
+                         f"does not cover)")
+            lines.append(line)
+    if not lines:
+        return []
+    return [
+        f"STOPPED: {len(lines)} row(s) have a comma in their name "
+        f"('{config.COMMA_FLAG_FIELD}' is set in Baserow):",
+        *lines,
+        "Remove the comma(s) in Baserow, re-export the CSV(s), and re-run.",
+    ]
+
+
+def check_other_placeholder(tables: dict[str, pd.DataFrame]) -> list[str]:
+    """
+    People-email rows affiliated with the exact placeholder
+    config.OTHER_PLACEHOLDER ("**Other") in any of config.OTHER_CHECK_FIELDS.
+    One line per People-email row, naming the columns. Returns message lines
+    (empty list = fine); never raises.
+    """
+    lines = []
+    for _, row in tables[config.STUB_PEOPLE_EMAIL].iterrows():
+        hits = [
+            f for f in config.OTHER_CHECK_FIELDS
+            if config.OTHER_PLACEHOLDER in split_multi(row[f])
+        ]
+        if hits:
+            lines.append(
+                f"  - {config.STUB_PEOPLE_EMAIL} id={safe_str(row['id'])} "
+                f"(sharepoint-id {safe_str(row['sharepoint-id-email'])}): {', '.join(hits)}"
+            )
+    if not lines:
+        return []
+    return [
+        f"STOPPED: {len(lines)} row(s) are affiliated with '{config.OTHER_PLACEHOLDER}' "
+        f"(an organisation or working group that is not yet in the CRM):",
+        *lines,
+        f"Replace '{config.OTHER_PLACEHOLDER}' in Baserow with the real organisation or working "
+        f"group (add it to Organisations / Working-Groups first if needed), re-export the "
+        f"CSV(s), and re-run.",
+    ]
+
+
+def resolve_name(cluster, where, warnings):
+    """
+    Public-identifiable label from the user-nominated first name and surname:
+    for each part the first non-empty value in sharepoint-id order (a warning
+    if the cluster's emails disagree). BOTH parts are required.
+    Returns (label, sources) with sources = [(Email, field, value), ...],
+    or (None, []) when either part is missing.
+    """
+    picked = []
+    for field, attr in zip(config.NAME_FIELDS, ("name_first", "name_surname")):
+        vals = [(e, getattr(e, attr)) for e in cluster if getattr(e, attr)]
+        if not vals:
+            return None, []
+        if warnings is not None and len({v for _, v in vals}) > 1:
+            warnings.add(
+                f"{where}: emails give DIFFERENT values for '{field}' "
+                f"({'; '.join(f'{e.sid}: {v}' for e, v in vals)}) -- first used."
+            )
+        picked.append((vals[0][0], field, vals[0][1]))
+    return f"{picked[0][2]} {picked[1][2]}", picked
+
+
+def check_name_commas(tables: dict[str, pd.DataFrame]) -> list[str]:
+    """
+    Commas in a first name / surname that WOULD be used as a public label
+    (public-identifiable clusters with both parts). Needs the people grouping,
+    so it builds it with throwaway warnings; if the data is too broken to group
+    it returns nothing and the normal run reports that error.
+    """
+    try:
+        emails = load_emails(tables[config.STUB_PEOPLE_EMAIL], set())
+        groups = build_groups(tables[config.STUB_PEOPLE_STACKED], emails, set())
+    except PipelineError:
+        return []
+    lines, seen = [], set()
+    for key, members in groups:
+        clusters, _status = build_clusters(members)
+        for cluster in clusters:
+            if min(e.rank for e in cluster) < config.CONSENT_PUBLIC_IDENTIFIABLE_RANK:
+                continue
+            _label, sources = resolve_name(cluster, f"person {key}", None)
+            for e, field, value in sources:
+                if "," in value and (e.row_id, field) not in seen:
+                    seen.add((e.row_id, field))
+                    lines.append(
+                        f"  - {config.STUB_PEOPLE_EMAIL} id={e.row_id} "
+                        f"(sharepoint-id {e.sid}): '{field}' = '{value}'"
+                    )
+    if not lines:
+        return []
+    return [
+        f"STOPPED: {len(lines)} row(s) have a comma in a first name or surname that would be "
+        f"shown on the public map:",
+        *lines,
+        "Remove the comma(s) in Baserow, re-export the CSV(s), and re-run.",
+    ]
+
+
+def preflight(tables: dict[str, pd.DataFrame]) -> None:
+    """Run every hard-stop data check and report ALL problems in one message,
+    before the salt is read or anything is built or written."""
+    sections = [
+        "\n".join(lines)
+        for lines in (check_comma_flags(tables), check_other_placeholder(tables),
+                      check_name_commas(tables))
+        if lines
+    ]
+    if sections:
+        raise PreflightStop("\n\n".join(sections))
 
 
 class Email:
@@ -240,6 +446,7 @@ class Email:
 
     def __init__(self, row: pd.Series, warnings: set):
         self.sid = safe_str(row["sharepoint-id-email"])
+        self.row_id = safe_str(row["id"])
         self.uuid = safe_str(row[config.EMAIL_UUID_FIELD]).lower()
         self.nominated = safe_str(row[config.EMAIL_UUID_NOMINATED_FIELD]).lower()
         stacked = split_multi(row["People-stacked"])
@@ -256,16 +463,26 @@ class Email:
         self.validated = parse_bool_cell(
             row["data-user-validation"], f"People-email.data-user-validation, {where}"
         )
+        self.bounced = parse_bool_cell(
+            row["email-bounced"], f"People-email.email-bounced, {where}"
+        )
         placeholder = config.PERSONAL_ORG_PLACEHOLDER.strip().lower()
         self.orgs = [
             o for o in split_multi(row["email-organisation"]) if o.strip().lower() != placeholder
         ]
         self.wg_lead = split_multi(row["email-wg-lead"])
         self.wg_member = split_multi(row["email-wg-member"])
-        self.fields = {
-            kumu_name: safe_str(row[src])
-            for kumu_name, (src, _strategy) in config.PERSON_FIELD_MAP.items()
-        }
+        self.fields = {}
+        for kumu_name, (src, _strategy) in config.PERSON_FIELD_MAP.items():
+            if src in config.MULTI_SELECT_FIELDS:
+                self.fields[kumu_name] = join_pipe(parse_multi_select(
+                    row[src], config.MULTI_SELECT_FIELDS[src],
+                    f"People-email {src}, {where}", warnings))
+            else:
+                self.fields[kumu_name] = safe_str(row[src])
+        # User-nominated first name / surname (public identifiable label only).
+        self.name_first = safe_str(row[config.NAME_FIELDS[0]])
+        self.name_surname = safe_str(row[config.NAME_FIELDS[1]])
 
     def sort_key(self):
         try:
@@ -428,9 +645,28 @@ def build_clusters(members: list[Email]) -> tuple[list[list[Email]], str]:
     return clusters, status
 
 
-def aggregate(members: list[Email], where: str, warnings: set) -> dict:
-    """Combine one person's (or cluster's) emails into a single record."""
-    rank = min(e.rank for e in members)
+def person_consent_rank(all_members: list[Email]) -> int:
+    """
+    Consent for a STACKED person, taken over ALL their emails (bounced ones too):
+      - "none" on any email blocks the whole stacked person;
+      - otherwise an email that has not been asked says nothing, and consent given
+        on any email covers all of them (an address or UUID may have been lost or
+        bounced); if different levels were given, the most restrictive of those given;
+      - if no email has given consent, not-asked.
+    """
+    ranks = [e.rank for e in all_members]
+    if any(r == config.CONSENT_NONE_RANK for r in ranks):
+        return config.CONSENT_NONE_RANK
+    given = [r for r in ranks if r > config.CONSENT_DEFAULT_RANK]
+    return min(given) if given else config.CONSENT_DEFAULT_RANK
+
+
+def aggregate(members: list[Email], where: str, warnings: set, rank: int | None = None) -> dict:
+    """Combine one person's (or cluster's) emails into a single record.
+    rank: the stacked person's consent (person_consent_rank); defaults to the
+    most restrictive of these emails."""
+    if rank is None:
+        rank = min(e.rank for e in members)
     agg = {
         "emails": members,
         "rank": rank,
@@ -448,6 +684,10 @@ def aggregate(members: list[Email], where: str, warnings: set) -> dict:
                     f"{where}: emails give DIFFERENT values for '{kumu_name}' "
                     f"({'; '.join(f'{s}: {v}' for s, v in vals)}) -- first used."
                 )
+        elif strategy == "union-options":
+            tokens = [t for _, v in vals for t in v.split("|") if t]
+            agg["fields"][kumu_name] = join_pipe(
+                order_options(tokens, config.MULTI_SELECT_FIELDS[src]))
         else:
             agg["fields"][kumu_name] = join_pipe(unique(v for _, v in vals))
     for e in members:
@@ -485,6 +725,8 @@ def build_container_nodes(df: pd.DataFrame, type_name: str, spec: dict, warnings
             continue
         if type_name == config.TYPE_ORGANISATION and label.lower() == placeholder:
             continue  # placeholder, not a real organisation
+        if label == config.OTHER_PLACEHOLDER:
+            continue  # "**Other": never a node (affiliated rows are a hard stop)
         kumu_id = f"{id_prefix(type_name)}-{row_id}"
         label_map.setdefault(label, []).append(kumu_id)
         elem = {
@@ -497,7 +739,9 @@ def build_container_nodes(df: pd.DataFrame, type_name: str, spec: dict, warnings
             if v:
                 elem["type-display"] = v
             else:
-                warnings.add(f"{type_name} '{label}' has no '{src}' -- type-display falls back to '{type_name}'.")
+                fallback = config.TYPE_DISPLAY_FALLBACK[type_name]
+                elem["type-display"] = fallback
+                warnings.add(f"{type_name} '{label}' has no '{src}' -- type-display falls back to '{fallback}'.")
         for f in spec["profile_fields"]:
             elem[f] = safe_str(row.get(f))
         elements.append(elem)
@@ -523,7 +767,7 @@ def person_profile(agg: dict, public_pseudonymised: bool | None) -> dict:
     return out
 
 
-def internal_person_element(key: str, agg: dict, link_status: str) -> dict:
+def internal_person_element(key: str, agg: dict, link_status: str, pseudonymised_id: str) -> dict:
     em = agg["emails"]
     uuid_label = key if not key.startswith("email-") else key[len("email-"):]
     return {
@@ -532,6 +776,7 @@ def internal_person_element(key: str, agg: dict, link_status: str) -> dict:
         "Type": config.TYPE_PERSON,
         "type-display": config.TYPE_PERSON,
         "Size": config.NODE_SIZES[config.TYPE_PERSON],
+        "pseudonymised-id": pseudonymised_id,
         "mapping-consent": agg["consent"],
         "link-status": link_status if not key.startswith("email-") else "unstacked",
         "email-count": str(len(em)),
@@ -571,12 +816,72 @@ def person_connections(source_id: str, agg: dict, label_maps: dict, internal: bo
             "From": source_id,
             "To": candidates[0],
             "Type": etype,
+            "connection-type": etype,  # custom copy of Type, used by Kumu filter/decorations
             "Direction": "undirected",
         }
         if internal:
             c["email-ids"] = join_pipe(unique(sids))
         conns.append(c)
     return conns
+
+
+# ---------------------------------------------------------------------------
+# Kumu display settings (legend limited to the types in use)
+# ---------------------------------------------------------------------------
+# Kumu lists every colour entry named in element-color: categorize(...),
+# whether or not that type occurs in the data. So the entries are generated
+# here, from the type-display values actually present, instead of being
+# hard-coded. Colours come from config.TYPE_DISPLAY_COLOURS; the legend is sorted alphabetically.
+
+_HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
+
+
+def load_display_template(references_dir: Path, name: str = DISPLAY_SETTINGS_NAME) -> str:
+    path = Path(references_dir) / (name + ".template")
+    if not path.exists():
+        raise PipelineError(f"Kumu display-settings template not found: {path}")
+    text = path.read_text(encoding="utf-8")
+    if TYPE_COLOURS_PLACEHOLDER not in text:
+        raise PipelineError(f"{path} does not contain the {TYPE_COLOURS_PLACEHOLDER} placeholder.")
+    return text
+
+
+def render_display_settings(template: str, present: list[str], warnings: set) -> str:
+    """Substitute #HEX "Value" entries (alphabetical, case-insensitive; present values only)."""
+    for value, hex_ in config.TYPE_DISPLAY_COLOURS.items():
+        if '"' in value or not _HEX.match(hex_):
+            raise PipelineError(
+                f"config.TYPE_DISPLAY_COLOURS entry {value!r}: {hex_!r} is invalid "
+                f"(value must not contain a double quote; colour must be #RRGGBB)."
+            )
+    for value in sorted(set(present) - set(config.TYPE_DISPLAY_COLOURS)):
+        warnings.add(
+            f"type-display value '{value}' is not in config.TYPE_DISPLAY_COLOURS -- "
+            f"Kumu will auto-colour it. Add it to the registry."
+        )
+    entries = [
+        f'{hex_} "{value}"'
+        for value, hex_ in sorted(config.TYPE_DISPLAY_COLOURS.items(),
+                                  key=lambda kv: (kv[0].casefold(), kv[0]))
+        if value in set(present)
+    ]
+    return template.replace(TYPE_COLOURS_PLACEHOLDER, ", ".join(entries))
+
+
+def write_display_settings(elements: list[dict], template: str, references_dir: Path,
+                           warnings: set, name: str = DISPLAY_SETTINGS_NAME) -> Path:
+    """Generate references/<name> from the elements of the matching workbook
+    (internal or public): the legend lists only the types present in them."""
+    present = unique(e["type-display"] for e in elements if e.get("type-display"))
+    out = Path(references_dir) / name
+    text = render_display_settings(template, present, warnings)
+    if PIS_URL_PLACEHOLDER in text:
+        warnings.add(
+            f"{name}: the text still contains the {PIS_URL_PLACEHOLDER} placeholder -- "
+            f"replace it with the Participant Information Sheet link in the template."
+        )
+    out.write_text(text, encoding="utf-8")
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -589,10 +894,10 @@ def write_workbook(path: str, elements: list[dict], connections: list[dict]):
     front = [c for c in ["ID", "Label", "Type", "type-display", "Size"] if c in elements_df.columns]
     elements_df = elements_df[front + [c for c in elements_df.columns if c not in front]]
     if len(connections_df):
-        cf = [c for c in ["ID", "From", "To", "Type", "Direction"] if c in connections_df.columns]
+        cf = [c for c in ["ID", "From", "To", "Type", "connection-type", "Direction"] if c in connections_df.columns]
         connections_df = connections_df[cf + [c for c in connections_df.columns if c not in cf]]
     else:
-        connections_df = pd.DataFrame(columns=["ID", "From", "To", "Type", "Direction"])
+        connections_df = pd.DataFrame(columns=["ID", "From", "To", "Type", "connection-type", "Direction"])
     os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
         elements_df.to_excel(writer, sheet_name="elements", index=False)
@@ -613,7 +918,8 @@ def load_names(path: str) -> dict[str, str]:
 # Main
 # ---------------------------------------------------------------------------
 
-def run(input_dir: str, output_dir: str, tag: str, salt_file: str, names_file: str | None) -> dict:
+def run(input_dir: str, output_dir: str, tag: str, salt_file: str, names_file: str | None,
+        references_dir: Path = REFERENCES_DIR) -> dict:
     warnings: set[str] = set()
 
     print(f"Loading Baserow exports from {input_dir} ...")
@@ -623,7 +929,11 @@ def run(input_dir: str, output_dir: str, tag: str, salt_file: str, names_file: s
         tables[stub] = load_table(input_dir, stub)
         print(f"  loaded {stub}: {len(tables[stub])} row(s)")
 
-    check_commas(tables)
+    # Hard stops on the data itself: all problems reported together, before the
+    # salt is read or anything is built or written.
+    preflight(tables)
+    display_template = load_display_template(references_dir)
+    public_display_template = load_display_template(references_dir, DISPLAY_SETTINGS_PUBLIC_NAME)
     emails = load_emails(tables[config.STUB_PEOPLE_EMAIL], warnings)
     check_positional_lists(tables[config.STUB_PEOPLE_STACKED], emails, warnings)
 
@@ -641,25 +951,46 @@ def run(input_dir: str, output_dir: str, tag: str, salt_file: str, names_file: s
 
     internal_people, internal_conns = [], []
     public_people, public_conns = [], []
-    stats = {"public_pseudonymised": 0, "public_identifiable": 0, "excluded": 0, "split_links": 0}
+    # Public map: an organisation appears only if at least one person affiliated
+    # with it has validated their data (on any of the stacked person's emails) AND consented
+    # to a public tier (pseudonymised or identifiable).
+    public_org_ids: set[str] = set()
+    stats = {"public_pseudonymised": 0, "public_identifiable": 0, "excluded": 0,
+             "split_links": 0, "excluded_none": 0, "named": 0,
+             "excluded_bounced": 0, "bounced_emails": 0}
 
     for key, members in groups:
+        # Bounced emails are dropped before anything is built: a person whose
+        # every email bounced is left off both maps; a person with at least one
+        # working email stays, described by their remaining emails only.
+        prank = person_consent_rank(members)  # all emails, bounced or not
+        person_validated = any(m.validated for m in members)
+        kept = [m for m in members if not m.bounced]
+        stats["bounced_emails"] += len(members) - len(kept)
+        if not kept:
+            stats["excluded_bounced"] += 1
+            continue
+        members = kept
         # ---- internal: the best-guess stacked person
         where = f"person {key}"
         clusters, status = build_clusters(members)
-        agg = aggregate(members, where, warnings)
-        el = internal_person_element(key, agg, status)
-        internal_people.append(el)
-        internal_conns += person_connections(el["ID"], agg, label_maps, True, warnings, where)
-        if status in ("partial", "unconfirmed"):
-            warnings.add(
-                f"{where}: email links not confirmed by the user-nominated UUIDs "
-                f"(link-status={status}); public map treats unconfirmed emails as separate people."
-            )
+        agg = aggregate(members, where, warnings, prank)
+        if agg["rank"] == config.CONSENT_NONE_RANK:
+            # Consent "none" on any email: no node and no links on either map.
+            stats["excluded_none"] += 1
+        else:
+            el = internal_person_element(key, agg, status, pseudonymise(key, salt))
+            internal_people.append(el)
+            internal_conns += person_connections(el["ID"], agg, label_maps, True, warnings, where)
+            if status in ("partial", "unconfirmed"):
+                warnings.add(
+                    f"{where}: email links not confirmed by the user-nominated UUIDs "
+                    f"(link-status={status}); public map treats unconfirmed emails as separate people."
+                )
 
         # ---- public: one node per confirmed cluster
         for i, cluster in enumerate(clusters):
-            cagg = aggregate(cluster, f"{where} cluster {cluster[0].sid}", set())  # warned above
+            cagg = aggregate(cluster, f"{where} cluster {cluster[0].sid}", set(), prank)  # warned above
             if cagg["rank"] < config.CONSENT_PUBLIC_PSEUDONYMISED_RANK:
                 stats["excluded"] += 1
                 continue
@@ -669,8 +1000,18 @@ def run(input_dir: str, output_dir: str, tag: str, salt_file: str, names_file: s
             public_id = pseudonymise(pseudo_key, salt)
             identifiable = cagg["rank"] >= config.CONSENT_PUBLIC_IDENTIFIABLE_RANK
             label = public_id
-            if identifiable and status in ("single", "confirmed") and key in names:
-                label = names[key]
+            if identifiable:
+                name, _src = resolve_name(cluster, f"{where} cluster {cluster[0].sid}", warnings)
+                if name is None and status in ("single", "confirmed") and key in names:
+                    name = names[key]  # fallback: reviewed names file
+                if name:
+                    label = name
+                    stats["named"] += 1
+                else:
+                    warnings.add(
+                        f"{where} cluster {cluster[0].sid}: public identifiable but no complete "
+                        f"first name + surname -- labelled by pseudonym."
+                    )
             stats["public_identifiable" if identifiable else "public_pseudonymised"] += 1
             public_people.append({
                 "ID": public_id, "Label": label, "Type": config.TYPE_PERSON,
@@ -678,24 +1019,49 @@ def run(input_dir: str, output_dir: str, tag: str, salt_file: str, names_file: s
                 "Size": config.NODE_SIZES[config.TYPE_PERSON],
                 **person_profile(cagg, not identifiable),
             })
-            public_conns += person_connections(public_id, cagg, label_maps, False, set(), where)
+            pconns = person_connections(public_id, cagg, label_maps, False, set(), where)
+            public_conns += pconns
+            if person_validated:
+                public_org_ids.update(c["To"] for c in pconns if c["Type"] == "affiliation")
+
+    public_org_elems = [o for o in org_elems if o["ID"] in public_org_ids]
+    all_org_ids = {o["ID"] for o in org_elems}
+    dropped_edges = [c for c in public_conns
+                     if c["Type"] == "affiliation" and c["To"] in all_org_ids
+                     and c["To"] not in public_org_ids]
+    public_conns = [c for c in public_conns if c not in dropped_edges]
+    if dropped_edges:
+        warnings.add(
+            f"{len(dropped_edges)} public affiliation link(s) dropped: the organisation has no "
+            f"validated person with public consent, so it is not on the public map."
+        )
 
     internal_elements = internal_people + org_elems + wg_elems
-    public_elements = public_people + org_elems + wg_elems
+    public_elements = public_people + public_org_elems + wg_elems
 
     os.makedirs(output_dir, exist_ok=True)
     internal_path = os.path.join(output_dir, f"kumu-import-internal-{tag}.xlsx")
     public_path = os.path.join(output_dir, f"kumu-import-public-{tag}.xlsx")
     write_workbook(internal_path, internal_elements, internal_conns)
     write_workbook(public_path, public_elements, public_conns)
+    settings_path = write_display_settings(internal_elements, display_template, references_dir, warnings)
+    public_settings_path = write_display_settings(
+        public_elements, public_display_template, references_dir, warnings, DISPLAY_SETTINGS_PUBLIC_NAME)
 
     report_path = os.path.join(output_dir, f"kumu-pipeline-report-{tag}.txt")
     lines = [
         f"Internal: {len(internal_elements)} elements ({len(internal_people)} people), {len(internal_conns)} connections -> {internal_path}",
         f"Public:   {len(public_elements)} elements ({len(public_people)} people), {len(public_conns)} connections -> {public_path}",
-        f"Public people: {stats['public_identifiable']} identifiable, {stats['public_pseudonymised']} pseudonymised; "
+        f"Public people: {stats['public_identifiable']} identifiable ({stats['named']} labelled by name), "
+        f"{stats['public_pseudonymised']} pseudonymised; "
         f"{stats['excluded']} excluded by consent; {stats['split_links']} split off by unconfirmed email links.",
-        f"Names file: {'used (' + str(len(names)) + ' name(s))' if names else 'not supplied -- all public people labelled by pseudonym'}",
+        f"Public organisations: {len(public_org_elems)} of {len(org_elems)} shown (only those with a validated, "
+        f"publicly consenting person); {len(org_elems) - len(public_org_elems)} left off the public map.",
+        f"Consent 'none': {stats['excluded_none']} stacked person(s) left off both maps.",
+        f"Bounced emails: {stats['bounced_emails']} email(s) ignored; "
+        f"{stats['excluded_bounced']} stacked person(s) with no working email left off both maps.",
+        f"Kumu display settings (legend: types in use only) -> internal {settings_path}; public {public_settings_path}",
+        f"Names file (fallback): {'used (' + str(len(names)) + ' name(s))' if names else 'not supplied'}",
         "",
         f"{len(warnings)} warning(s):",
         *[f"  - {w}" for w in sorted(warnings)],
@@ -704,7 +1070,8 @@ def run(input_dir: str, output_dir: str, tag: str, salt_file: str, names_file: s
         f.write("\n".join(lines) + "\n")
     print("\n" + "\n".join(lines))
     print(f"\n(report also written to {report_path})")
-    return {"internal": internal_path, "public": public_path, "report": report_path}
+    return {"internal": internal_path, "public": public_path, "report": report_path,
+            "settings": str(settings_path), "settings_public": str(public_settings_path)}
 
 
 def main():
@@ -718,14 +1085,22 @@ def main():
     parser.add_argument("--names-file", default=None,
                         help=f"Optional CSV (baserow-UUID-person,name) for public-identifiable labels "
                              f"(default: <input-dir>/{config.NAMES_FILE_NAME} if present).")
-    parser.add_argument("--date", default=date.today().strftime("%Y%m%d"),
-                        help="Date tag for output filenames (default: today, YYYYMMDD).")
+    parser.add_argument("--references-dir", default=str(REFERENCES_DIR),
+                        help="Folder holding the display-settings template; the generated "
+                             "settings file is written here (default: the skill's references/ "
+                             "folder, which is version-controlled).")
+    parser.add_argument("--date", default=datetime.now().strftime("%Y%m%d-%H%M%S"),
+                        help="Tag for output filenames (default: the run time, YYYYMMDD-HHMMSS, local time).")
     args = parser.parse_args()
 
     output_dir = args.output_dir or args.input_dir
     names_file = args.names_file or os.path.join(args.input_dir, config.NAMES_FILE_NAME)
     try:
-        run(args.input_dir, output_dir, args.date, args.salt_file, names_file)
+        run(args.input_dir, output_dir, args.date, args.salt_file, names_file,
+            Path(args.references_dir))
+    except PreflightStop as e:
+        print(f"\n{e}", file=sys.stderr)
+        return 1
     except PipelineError as e:
         print(f"\nSTOPPED: {e}", file=sys.stderr)
         return 1

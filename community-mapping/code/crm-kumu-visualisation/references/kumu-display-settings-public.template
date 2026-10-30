@@ -1,0 +1,136 @@
+@controls {
+  top-left {
+    search {}
+
+    filter {
+      target: element;
+      by: "type-display";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by type";
+    }
+
+    filter {
+      target: element;
+      by: "career-stage";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by career stage";
+    }
+
+    filter {
+      target: element;
+      by: "career-role-type";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by career role type";
+    }
+
+    filter {
+      target: connection;
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      label: "filter by connection type";
+
+      option {
+        label: "lead";
+        selector: connection["connection-type"="lead"];
+      }
+
+      option {
+        label: "member";
+        selector: connection["connection-type"="member"];
+      }
+
+      option {
+        label: "affiliation";
+        selector: connection["connection-type"="affiliation"];
+      }
+    }
+
+    showcase {
+      target: element;
+      by: "type-display";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by type";
+    }
+
+    showcase {
+      target: element;
+      by: "career-stage";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by career stage";
+    }
+
+    showcase {
+      target: element;
+      by: "career-role-type";
+      as: dropdown;
+      multiple: true;
+      default: show-all;
+      mode: normal;
+      label: "showcase by career role type";
+    }
+  }
+
+  bottom-right {
+    text {
+      value: "TO BE ADDED TO THIS MAP: join the UK TRE Slack workspace or Jisc mailing list at http://tinyurl.com/uktre-join . Data from these sources is pulled periodically and the map is updated.";
+      text-align: right;
+      width: 400;
+      margin: 6;
+    }
+
+    text {
+      value: "CONTACT: Cassandra Gould van Praag, cassandra.gouldvanpraag@rcmcooperative.com";
+      text-align: right;
+      width: 400;
+      margin: 6;
+    }
+
+    text {
+      value: "GDPR STATEMENT:";
+      margin: 0.5;
+    }
+
+    text {
+      value: "This map shows only people who have chosen to appear on it. Each person chooses to be publicly identifiable, to appear under a pseudonymised ID, or not to appear at all. Pseudonymised people appear with their organisations, working groups, career role type and career stage. Identifiable people also appear with their name and any public profile links they chose to share. Email addresses never appear on this map. Manchester University NHS Foundation Trust (MFT) is the Data Controller (dpo@mft.nhs.uk). The data is processed for a service improvement project under REC 23/NE/0076, DPIA B01917 and ISO 27001 IS806270. Data is held in a private Baserow database hosted in Germany and visualised in Kumu, a US-based service that participates in the Data Privacy Framework, including the UK Extension. People can change or withdraw their consent at any time. For full details see the Participant Information Sheet: https://tinyurl.com/uktre-map-PIS";
+      text-align: right;
+      width: 400;
+      margin: 1;
+    }
+  }
+}
+
+@settings {
+  template: stakeholder;
+  element-shape: categorize("type-display");
+  element-scale: scale("Size", 0.5, 3);
+  element-color: categorize("type-display", {{TYPE_COLOURS}});
+  background-color: #FFFFFF;
+}
+
+connection["connection-type"="lead"] {
+  color: #004488;
+  pattern: solid;
+}
+
+connection["connection-type"="member"] {
+  color: #6699CC;
+  pattern: dashed;
+}
+
+connection["connection-type"="affiliation"] {
+  color: #999999;
+  pattern: solid;
+}
